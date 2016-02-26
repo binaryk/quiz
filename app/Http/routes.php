@@ -17,6 +17,7 @@ $router->group(['namespace' => 'Frontend'], function () use ($router) {
 });
 $router->group(['namespace' => 'Quiz'], function () use ($router) {
     get('new-quiz', 'QuizController@index')->name('quiz.create');
+    post('new-quiz', 'QuizController@store')->name('quiz.store');
     post('coperta', 'QuizController@coperta')->name('quiz.coperta');
 });
 

@@ -1,6 +1,8 @@
 <?php  namespace App\Http\Controllers\Quiz;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Class FrontendController
@@ -18,12 +20,33 @@ class QuizController extends Controller
 
     public function coperta()
     {
-        $input   = \Input::all();
+        $input   = Input::all();
+        $file = $input['coperta'];
+        $file->move( public_path() . '/uploads',  $input['title'].'.png');
+        return $result = \Response::json(['success' => true, 'message' => 'Upload. OK']);
+    }
+
+    public function store()
+    {
+
+
+        $input = Input::all();
+        $this->readFile1();
+        $input   = Input::all();
+        $file = $input['coperta'];
+//        $file->move( public_path() . '/uploads',  $input['title'].'.png');
         dd($input);
 
-        $file = $input['file_data'];
-        $file->move( public_path() . '/uploads',  'test.png');
-        return $result = \Response::json(['success' => true, 'message' => 'Upload. OK']);
+
+    }
+
+    public function readFile1()
+    {
+
+        $contents = File::get(config('destinations.in1'));
+        $contents = str_replace("[[NAME]]", "EDUARD", $contents);
+        File::put("C:\\xampp\\file2.php", $contents);
+
     }
 
     public function controls()
