@@ -2,6 +2,7 @@
 @section('css')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('packages/fileinput/css/fileinput.min.css') }}">
+    <link rel="stylesheet" href="{!! asset('components/cropper/dist/cropper.min.css') !!}">
 @endsection
 
 @section('content')
@@ -31,4 +32,5 @@
 
 @section('after-scripts-end')
     <script type="text/javascript" src = "{{asset( 'packages/fileinput/js/fileinput.min.js') }}"></script>
+    <script src="{!! asset('components/cropper/dist/cropper.min.js') !!}"></script>
 @stop

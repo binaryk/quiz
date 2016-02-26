@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
  */
 class QuizController extends Controller
 {
+    use OperationsTrait;
 
     public function index()
     {
@@ -21,75 +22,30 @@ class QuizController extends Controller
     public function coperta()
     {
         $input   = Input::all();
-        $file = $input['coperta'];
-        $file->move( public_path() . '/uploads',  $input['title'].'.png');
-        return $result = \Response::json(['success' => true, 'message' => 'Upload. OK']);
+        /*$file = $input['coperta'];
+        $simple_name = $file->getClientOriginalName();
+        $path = $file->move( public_path() . '/uploads',  $simple_name);*/
+        $upload = $this->moveSample($input);
+        return $result = \Response::json(['success' => true, 'message' => 'Upload. OK', 'path' => $upload['path'],'name' => $upload['name']]);
     }
 
     public function store()
     {
-
-
         $input = Input::all();
-        $this->readFile1();
-        $input   = Input::all();
-        $file = $input['coperta'];
-//        $file->move( public_path() . '/uploads',  $input['title'].'.png');
-        dd($input);
-
-
+        // controller
+        $this->readFile1($input);
+        // view
+        $this->readFile2($input);
+        ///var/www/html/ro/uploads/
+        $this->makeFolder($input);
+        // upload simple
+//        $this->moveSample($input);
+        $this->makePhotosFolder($input);
+        $this->moveImages($input);
+        return redirect()->back();
     }
 
-    public function readFile1()
-    {
 
-        $contents = File::get(config('destinations.in1'));
-        $contents = str_replace("[[NAME]]", "EDUARD", $contents);
-        File::put("C:\\xampp\\file2.php", $contents);
-
-    }
-
-    public function controls()
-    {
-        return [
-            'title_quiz' =>
-                \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-                    ->name('title_quiz')
-                    ->caption('Title quiz')
-                    ->class('form-control data-source')
-                    ->controlsource('title_quiz')
-                    ->controltype('textbox')
-                    ->maxlength(255)
-                    ->out(),
-            'title' =>
-                \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-                    ->name('title')
-                    ->caption('Title')
-                    ->class('form-control data-source')
-                    ->controlsource('title')
-                    ->controltype('textbox')
-                    ->maxlength(255)
-                    ->out(),
-            'ogtitle' =>
-                \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
-                    ->name('ogtitle')
-                    ->caption('Og Title')
-                    ->class('form-control data-source')
-                    ->controlsource('ogtitle')
-                    ->controltype('textbox')
-                    ->maxlength(255)
-                    ->out(),
-            'description' =>
-                \Easy\Form\Textbox::make('~layouts.form.controls.editboxes.editbox')
-                    ->name('description')
-                    ->caption('Dscription')
-                    ->class('form-control data-source')
-                    ->controlsource('description')
-                    ->controltype('textbox')
-                    ->maxlength(255)
-                    ->out(),
-        ];
-    }
 
 
 

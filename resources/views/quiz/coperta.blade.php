@@ -9,6 +9,21 @@
                     <input id="coperta" name="coperta" type="file"/>
                 </div>
             </div>
+            <hr>
+            <div class="col-md-12">
+                <img src=""  id="image" >
+                <hr>
+                <label for="">X</label>
+                <input type="text" readonly="readonly" name="x">
+                <label for="">Y</label>
+                <input type="text" readonly="readonly" name="y">
+                <label for="">Height</label>
+                <input type="text" readonly="readonly" name="height">
+                <label for="">Width</label>
+                <input type="text" readonly="readonly" name="width">
+                <input type="hidden" name="coperta_name">
+
+            </div>
         </div>
     </div>
 </div>
@@ -18,45 +33,47 @@
 
     <script>
         var upload_document = $("#coperta").fileinput({
-        'previewSettings' : {},
-        'dropZoneEnabled' : false,
+        'dropZoneEnabled' : true,
         'showCaption'     : false,
-        'browseLabel'     : 'Alege fisier',
-        'removeLabel'     : 'Sterge selectia',
-        'uploadLabel'     : 'Incarca fisierul',
-        'uploadAsync'     : false,
+        'showUpload'      : true,
+        'showRemove'      : false,
+        'uploadAsync'     : true,
         'uploadUrl'       : "{!! route('quiz.coperta') !!}",
-        'uploadExtraData' :
-        {
-        title : 'xxxxxxxxxxxxxxxx'
-        }
-        ,
-        'fileActionSettings' :
-        {
-        'removeTitle' : 'Sterge selectia',
-        'uploadTitle' : 'Incarca fisierul',
-        'indicatorNewTitle' : 'Fisierul nu este incarcat'
-        }
-        });
-
-        upload_document.on('filepreajax', function(event, previewId, index) {
-        $(this).fileinput({
-        'uploadExtraData' :
-        {
-        title : 'gggggggg'
-        }
-        });
-        console.log('File pre ajax triggered', index);
         });
 
         upload_document.on('fileuploaded', function(event, data, previewId, index){
-        var file_name = data.files[0].name;
-        var extention = file_name.split('.')[1];
-        var file_name = file_name.split('.')[0];
-        var MyDate = new Date();
-        var MyDateString;
-        console.log(MyDateString);
-        MyDateString =  MyDate.getFullYear() + '-' + ('0' + (MyDate.getMonth()+1)).slice(-2)   + '-' + ('0' + MyDate.getDate()).slice(-2) ;
+            console.log(data);
+            console.log(data.response.path);
+            $('[name=coperta_name]').val(data.response.name)
+            $('#image').attr('src',"http://localhost/quiz/public/out/sample/"+data.response.name);
+            initCrop();
         });
+
+        function initCrop(){
+            $('#image').cropper({
+                aspectRatio: 1 / 1,
+                modal: true,
+                zoomable: false,
+                crop: function(e) {
+                    // Output the result data for cropping image.
+                    console.log(e.x);
+                    console.log(e.y);
+                    console.log(e.width);
+                    console.log(e.height);
+                    $('[name=x]').val(e.x)
+                    $('[name=y]').val(e.y)
+                    $('[name=height]').val(e.height)
+                    $('[name=width]').val(e.width)
+                    console.log(e.rotate);
+                    console.log(e.scaleX);
+                    console.log(e.scaleY);
+                }
+            });
+        }
     </script>
 @endsection
+@section('css')
+    @parent
+    <style>
+    </style>
+@stop

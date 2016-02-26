@@ -1,0 +1,21 @@
+{
+  "name": "quiz",
+  "description": "",
+  "main": "",
+  "authors": [
+    "binaryk <lupacescueduard@yahoo.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/binaryk/quiz",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "cropper": "~2.3.0"
+  }
+}

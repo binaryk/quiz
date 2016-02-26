@@ -5,8 +5,8 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12">
-                <div class="col-md-6">{!! $controls['title'] !!}</div>
                 <div class="col-md-6">{!! $controls['title_quiz'] !!}</div>
+                <div class="col-md-6">{!! $controls['title'] !!}</div>
                 <div class="col-md-6">{!! $controls['ogtitle'] !!}</div>
                 <div class="col-md-12">{!! $controls['description'] !!}</div>
             </div>
