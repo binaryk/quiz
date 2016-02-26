@@ -11,7 +11,7 @@
             </div>
             <hr>
             <div class="col-md-12">
-                <img src=""  id="image" >
+                <img src="{!!public_path()!!} + '/uploads/profesor_600x354.jpg'"  id="image" >
                 <hr>
                 <label for="">X</label>
                 <input type="text" readonly="readonly" name="x">
