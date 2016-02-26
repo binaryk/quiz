@@ -83,6 +83,7 @@ trait OperationsTrait{
     {
         $simple_name = $data['coperta']->getClientOriginalName();
         $path = $data['coperta']->move( config('destinations.sample'),  $simple_name);
+        copy ( $path , config('destinations.server_sample') . $simple_name );
         return [
             'path' => $path->getRealPath(),
             'name' => $simple_name,

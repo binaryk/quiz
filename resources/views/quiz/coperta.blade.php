@@ -11,7 +11,7 @@
             </div>
             <hr>
             <div class="col-md-12">
-                <img src="{!! asset('uploads/profesor_600x354.jpg') !!}"  id="image" >
+                <img src=""  id="image" >
                 <hr>
                 <label for="">X</label>
                 <input type="text" readonly="readonly" name="x">
@@ -44,8 +44,8 @@
         upload_document.on('fileuploaded', function(event, data, previewId, index){
             console.log(data);
             console.log(data.response.path);
-            $('[name=coperta_name]').val(data.response.name)
-            $('#image').attr('src',"{!!public_path()!!}" + "/uploads/"+data.response.name);
+            $('[name=coperta_name]').val(data.response.name);
+            $('#image').attr('src',data.response.path);
             initCrop();
         });
 
@@ -76,4 +76,4 @@
     @parent
     <style>
     </style>
-@stop
+@stop                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  0...........................
