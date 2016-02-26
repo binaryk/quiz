@@ -26,7 +26,7 @@ class QuizController extends Controller
         $simple_name = $file->getClientOriginalName();
         $path = $file->move( public_path() . '/uploads',  $simple_name);
 //        $upload = $this->moveSample($input);
-        return $result = \Response::json(['success' => true, 'message' => 'Upload. OK', 'path' => $upload['path'],'name' => $upload['name']]);
+        return $result = \Response::json(['success' => true, 'message' => 'Upload. OK', 'path' => $path,'name' => $simple_name]);
     }
 
     public function store()
