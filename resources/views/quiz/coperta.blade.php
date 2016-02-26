@@ -45,7 +45,7 @@
             console.log(data);
             console.log(data.response.path);
             $('[name=coperta_name]').val(data.response.name)
-            $('#image').attr('src',"http://localhost/quiz/public/out/sample/"+data.response.name);
+            $('#image').attr('src',"/var/www/html/quiz/public/out/sample/"+data.response.name);
             initCrop();
         });
 
