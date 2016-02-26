@@ -1,9 +1,5 @@
 <?php
 
-
-dd(public_path());
-
-
 /**
  * Switch between the included languages
  */
