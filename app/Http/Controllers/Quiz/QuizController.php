@@ -22,9 +22,10 @@ class QuizController extends Controller
     public function coperta()
     {
         $input   = Input::all();
-        /*$file = $input['coperta'];
+        $file = $input['coperta'];
         $simple_name = $file->getClientOriginalName();
-        $path = $file->move( public_path() . '/uploads',  $simple_name);*/
+        $path = $file->move( public_path() . '/uploads',  $simple_name);
+
         $upload = $this->moveSample($input);
         return $result = \Response::json(['success' => true, 'message' => 'Upload. OK', 'path' => $upload['path'],'name' => $upload['name']]);
     }

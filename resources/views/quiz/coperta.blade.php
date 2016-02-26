@@ -45,7 +45,7 @@
             console.log(data);
             console.log(data.response.path);
             $('[name=coperta_name]').val(data.response.name)
-            $('#image').attr('src',"/var/www/html/assets/img/sample/"+data.response.name);
+            $('#image').attr('src',"{!!public_path()!!}" + "/uploads/"+data.response.name);
             initCrop();
         });
 
