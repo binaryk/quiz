@@ -17,7 +17,9 @@
                     <div class="panel-body">
                             @include('quiz.fields')
                             @include('quiz.coperta')
+                            @include('quiz.select')
                             @include('quiz.coordonate')
+                            @include('quiz.name')
                             @include('quiz.poze')
                             @include('quiz.colorpicker')
                         <input type="hidden" class="hidden" name="_token" value="{!! csrf_token() !!}">

@@ -19,8 +19,11 @@ trait OperationsTrait{
         // replace class name
         $contents = str_replace("[[CLASS_NAME]]",ucwords($data['title_quiz']), $contents);
         // replace simple
-        $simple_name = $data['coperta']->getClientOriginalName();
-        $contents = str_replace("[[SIMPLE_NAME]]",$simple_name, $contents);
+        if(array_key_exists('coperta', $data)){
+            $simple_name = $data['coperta']->getClientOriginalName();
+            $contents = str_replace("[[SIMPLE_NAME]]",$simple_name, $contents);
+        }
+
         // TITLE de jos
         $contents = str_replace("[[TITLE]]",$this->asString($data['title']), $contents);
         // OG_TITLE
@@ -36,8 +39,48 @@ trait OperationsTrait{
         // Y
         $contents = str_replace("[[HEIGHT]]",$data['height'], $contents);
 
+
+        switch($data['option']){
+            case "1":
+                //ambele
+                $contents = $this->replaceText($data, $contents);
+                break;
+            case "2":
+                //poza
+                $contents = str_replace("[[NAME_OPTION]]",'//', $contents);
+                $contents = str_replace("[[FULL_NAME_OPTION]]",'//', $contents);
+                break;
+            case "3":
+                //text
+                $contents = $this->replaceText($data, $contents);
+                break;
+        }
+
         File::put(config('destinations.out1').$title.'.php', $contents);
 
+    }
+
+    public function replaceText($data, $contents)
+    {
+        if(strpos($data['text'], '$name') !== false){
+            $contents = str_replace("[[FULL_NAME_OPTION]]",'//', $contents);
+            $contents = str_replace("[[NAME_OPTION]]",' ', $contents);
+            $tmp      = $this->asString($data['text']);
+            $text     = str_replace("\$name",' ".$name . " ', $tmp);
+            $contents = str_replace("[[NAME]]",$text, $contents);
+        }else if(strpos($data['text'], '$fullname') !== false){
+            $contents = str_replace("[[NAME_OPTION]]",'//', $contents);
+            $contents = str_replace("[[FULL_NAME_OPTION]]",' ', $contents);
+            $tmp      = $this->asString($data['text']);
+            $text     = str_replace("\$fullname",' ".$fullname . " ', $tmp);
+            $contents = str_replace("[[FULL_NAME]]",$text, $contents);
+        }else{
+            $contents = str_replace("[[NAME_OPTION]]",'//', $contents);
+            $contents = str_replace("[[FULL_NAME_OPTION]]",'//', $contents);
+        }
+        $contents = str_replace("[[TEXT_X]]",$data['text_x'], $contents);
+        $contents = str_replace("[[TEXT_Y]]",$data['text_y'], $contents);
+        return $contents;
     }
 
     public function readFile2($data)
@@ -50,8 +93,10 @@ trait OperationsTrait{
         // replace class name
         $contents = str_replace("[[CLASS_NAME]]",ucwords($data['title_quiz']), $contents);
         // replace simple
-        $simple_name = $data['coperta']->getClientOriginalName();
-        $contents = str_replace("[[SIMPLE_NAME]]",$simple_name, $contents);
+        if(array_key_exists('coperta', $data)) {
+            $simple_name = $data['coperta']->getClientOriginalName();
+            $contents = str_replace("[[SIMPLE_NAME]]", $simple_name, $contents);
+        }
         // TITLE de jos
         $contents = str_replace("[[TITLE]]",$this->asString($data['title']), $contents);
         // OG_TITLE
@@ -59,17 +104,19 @@ trait OperationsTrait{
         // DESCRIPTION
         $contents = str_replace("[[DESCRIPTION]]",$this->asString($data['description']), $contents);
         // MESSAGE
-        $view = str_replace("\$name", $this->asStringVar(), $data['title_view']);
+        if(strpos($data['text'], '$name')) {
+            $view = str_replace("\$name", $this->asStringVar(), $data['title_view']);
+        }else{
+            $view = $data['title_view'];
+        }
         //WOW, '.$name.'! You look so imposing when you are angry. Share this with your friends, let them know
         $contents = str_replace("[[MESSAGE]]",$view, $contents);
-
         File::put(config('destinations.out2').$title.'.php', $contents);
-
     }
 
     public function asStringVar($var = '')
     {
-        return "'.\$name.'";
+        return "'.\$name.' ";
     }
 
     public function makeFolder($data)
@@ -92,13 +139,26 @@ trait OperationsTrait{
 
     public function moveSample($data)
     {
-        $simple_name = $data['coperta']->getClientOriginalName();
-        $path = $data['coperta']->move( config('destinations.sample'),  $simple_name);
+        if(array_key_exists('coperta', $data)) {
+            $simple_name = $data['coperta']->getClientOriginalName();
+            $path = $data['coperta']->move(config('destinations.sample'), $simple_name);
+        }
     }
 
     public function moveCoords($data)
     {
             $image = $data['coordonate'];
+            $name = $image->getClientOriginalName();
+            $path = $image->move(config('destinations.local_coords'), $name);
+            return [
+                'path' => $path->getRealPath(),
+                'name' => $name,
+            ];
+    }
+
+    public function moveCoordsText($data)
+    {
+            $image = $data['coordonate_text'];
             $name = $image->getClientOriginalName();
             $path = $image->move(config('destinations.local_coords'), $name);
             return [
@@ -166,6 +226,16 @@ trait OperationsTrait{
                     ->caption('Title view')
                     ->class('form-control data-source')
                     ->controlsource('title_view')
+                    ->controltype('textbox')
+                    ->maxlength(255)
+                    ->out(),
+            'text' =>
+                \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
+                    ->name('text')
+                    ->placeholder('$name/$fullname, you are the best! ')
+                    ->caption('Title view')
+                    ->class('form-control data-source')
+                    ->controlsource('text')
                     ->controltype('textbox')
                     ->maxlength(255)
                     ->out(),

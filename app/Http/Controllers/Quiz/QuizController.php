@@ -22,10 +22,14 @@ class QuizController extends Controller
     public function coordonate()
     {
         $input   = Input::all();
-        /*$file = $input['coperta'];
-        $simple_name = $file->getClientOriginalName();
-        $path = $file->move( public_path() . '/uploads',  $simple_name);*/
         $upload = $this->moveCoords($input);
+        return $result = \Response::json(['success' => true, 'message' => 'Upload. OK', 'path' => asset('out/coords/'.$upload['name']),'name' => $upload['name']]);
+    }
+
+    public function coordonate_text()
+    {
+        $input   = Input::all();
+        $upload = $this->moveCoordsText($input);
         return $result = \Response::json(['success' => true, 'message' => 'Upload. OK', 'path' => asset('out/coords/'.$upload['name']),'name' => $upload['name']]);
     }
 

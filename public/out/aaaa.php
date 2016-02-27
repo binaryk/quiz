@@ -48,7 +48,7 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
     return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
 }
 
-class Sad extends CI_Controller {
+class Aaaa extends CI_Controller {
 
     public $user = null;
     public $access_token;
@@ -68,14 +68,14 @@ class Sad extends CI_Controller {
     }
 
     function index() {
-        $data['main'] = 'pages/sad';
-        $data['title'] = "adasd";
-        $data['og_title'] = "adasda $name adasdasd";
-        $data['og_description'] = "asdsadas";
-        $data['og_img'] = asset_url().'img/sample/edu.jpg';
-        $data['og_url'] = base_url() . 'sad';
+        $data['main'] = 'pages/aaaa';
+        $data['title'] = "AAA";
+        $data['og_title'] = "AAA";
+        $data['og_description'] = "asca asdsa dsa";
+        $data['og_img'] = asset_url().'img/sample/[[SIMPLE_NAME]]';
+        $data['og_url'] = base_url() . 'aaaa';
         $scope = 'public_profile,publish_actions,user_friends';
-        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "sad/app", "scope" => $scope));
+        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "aaaa/app", "scope" => $scope));
         $data['login'] = $login;
         $this->load->view('index', $data);
     }
@@ -86,7 +86,7 @@ class Sad extends CI_Controller {
 
             $this->session->set_flashdata('message', '**Sorry you have to accept the permission to see your wiki**');
             $user = null;
-            redirect(base_url() . 'sad');
+            redirect(base_url() . 'aaaa');
         }
 
         $this->user = $this->facebook->getUser();
@@ -133,7 +133,7 @@ class Sad extends CI_Controller {
 
 
 
-                $dest = Imagecreatefromjpeg(asset_url() . 'img/sad/'.$per.'.jpg');
+                $dest = Imagecreatefromjpeg(asset_url() . 'img/aaaa/'.$per.'.jpg');
                 $src = Imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
                 $white = ImageColorAllocate($dest, 255, 255, 255);
                 $black = ImageColorAllocate($dest, 0, 0, 0);
@@ -147,17 +147,25 @@ class Sad extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-                imagettfstroketext($dest, 28, 0, 95.99999999999999, 95.99999999999999, $white, $black, $font_path, $fullname, 2);
+         imagettfstroketext($dest, 28, 0, 96.00000000000009, 95.99999999999999, $white, $black, $font_path, " ".$fullname . "  is asdjaspdjsadpas d asdasd", 2);
+             //imagettfstroketext($dest, 28, 0, 96.00000000000009, 95.99999999999999, $white, $black, $font_path, [[NAME]], 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
+                $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
+                list($rwidth, $rheight) = getimagesize($filename);
 
-//                Imagecopymerge($dest, $src, 61, 135, 0, 0, 200, 200, 100); // nu ai nevoie de ea o comentezi. save
+                $thumb = imagecreatetruecolor(768, 768);
+                $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
+
+                imagecopyresized($thumb, $source, 0, 0, 0, 0, 768, 768, $rwidth, $rheight);
+                imagejpeg($thumb, 'uploads/' . $user_profile['id'] . '.jpg');
+                Imagecopymerge($dest, $thumb, 42, 152, 0, 0, 768, 768, 100);
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
-                imagejpeg($dest, 'uploads/sad/result_' . $user_profile['id'] . '.jpg');
+                imagejpeg($dest, 'uploads/aaaa/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
 
@@ -166,7 +174,7 @@ class Sad extends CI_Controller {
 
                 $user_id = $user_profile['id'];
                 $this->session->set_userdata('user_id', $user_id);
-                redirect(base_url() . 'sad/result/' . $user_id . '/' . $name);
+                redirect(base_url() . 'aaaa/result/' . $user_id . '/' . $name);
             } catch (FacebookApiException $e) {
 
                 echo'error';
@@ -179,18 +187,18 @@ class Sad extends CI_Controller {
 
     function result($user_id, $name) {
 
-        $data['main'] = "pages/sad";
-        $data['title'] = "adasd";
-        $data['og_title'] = "adasda $name adasdasd";
-        $data['og_description'] = "asdsadas";
-        $data['og_img'] = base_url() . 'uploads/sad/result_' . $user_id . '.jpg';
-        $data['og_url'] = base_url() . 'sad/result/' . $user_id . '/' . $name . '?share=1';
+        $data['main'] = "pages/aaaa";
+        $data['title'] = "AAA";
+        $data['og_title'] = "AAA";
+        $data['og_description'] = "asca asdsa dsa";
+        $data['og_img'] = base_url() . 'uploads/aaaa/result_' . $user_id . '.jpg';
+        $data['og_url'] = base_url() . 'aaaa/result/' . $user_id . '/' . $name . '?share=1';
         $data['user_id'] = $user_id;
         $data['name'] = $name;
-        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "sad/app"));
+        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "aaaa/app"));
         $this->load->view('index', $data);
         $fb = new FacebookDebugger();
-        $fb->reload(base_url() . 'sad/result/' . $user_id . '/' . $name);
+        $fb->reload(base_url() . 'aaaa/result/' . $user_id . '/' . $name);
 
         $sqluser = $this->config->item('db_user');
         $sqlpass = $this->config->item('db_password');
@@ -218,7 +226,7 @@ class Sad extends CI_Controller {
                 $ffullname = $user_profile['name'];
                 $fuserid = $user_profile['id'];
                 $fdate = date("Y-m-d");
-                $sharelink =  base_url() . 'sad/result/' . $user_id . '/' . $name . '?share=1';
+                $sharelink =  base_url() . 'aaaa/result/' . $user_id . '/' . $name . '?share=1';
                 $this->user = $this->facebook->getUser();
                 $shareper = rand(1, 1000);
 
