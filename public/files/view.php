@@ -96,7 +96,7 @@ if (isset($_GET['step']) && $_GET['step'] == 1) {
                             echo '
 <div class="quiz-cover">
 <a href="'. base_url().'[[QUIZ_NAME]]?step=1" class="start-load main-image">
-<img src="'. asset_url().'img/sample/[[SIMPLE_NAME]].jpg" class="replace-loader" alt=""/>
+<img src="'. asset_url().'img/sample/[[SIMPLE_NAME]]" class="replace-loader" alt=""/>
 </a>
 <div style="padding: 10px 0 5px">
 </div>
