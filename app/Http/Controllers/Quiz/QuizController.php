@@ -37,11 +37,14 @@ class QuizController extends Controller
         // view
         $this->readFile2($input);
         ///var/www/html/ro/uploads/
-        $this->makeFolder($input);
+        if(! env('APP_ENV') == 'local'){
+            $this->makeFolder($input);
+        }
         // upload simple
         $this->moveSample($input);
         $this->makePhotosFolder($input);
         $this->moveImages($input);
+        $this->rules();
         return redirect()->back();
     }
 

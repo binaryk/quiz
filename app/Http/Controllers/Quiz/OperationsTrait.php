@@ -119,6 +119,11 @@ trait OperationsTrait{
         }
     }
 
+    public function rules()
+    {
+        shell_exec('chown -R www-data:www-data /var/www/html');
+    }
+
     public function controls()
     {
         return [
