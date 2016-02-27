@@ -19,8 +19,7 @@ trait OperationsTrait{
         // replace class name
         $contents = str_replace("[[CLASS_NAME]]",ucwords($data['title_quiz']), $contents);
         // replace simple
-//        $simple_name = $data['coperta']->getClientOriginalName();
-        $simple_name = $data['coperta_name'];
+        $simple_name = $data['coperta']->getClientOriginalName();
         $contents = str_replace("[[SIMPLE_NAME]]",$simple_name, $contents);
         // TITLE de jos
         $contents = str_replace("[[TITLE]]",$this->asString($data['title']), $contents);
@@ -47,8 +46,7 @@ trait OperationsTrait{
         // replace class name
         $contents = str_replace("[[CLASS_NAME]]",ucwords($data['title_quiz']), $contents);
         // replace simple
-//        $simple_name = $data['coperta']->getClientOriginalName();
-        $simple_name = $data['coperta_name'];
+        $simple_name = $data['coperta']->getClientOriginalName();
         $contents = str_replace("[[SIMPLE_NAME]]",$simple_name, $contents);
         // TITLE de jos
         $contents = str_replace("[[TITLE]]",$this->asString($data['title']), $contents);
@@ -56,9 +54,18 @@ trait OperationsTrait{
         $contents = str_replace("[[OG_TITLE]]",$this->asString($data['ogtitle']), $contents);
         // DESCRIPTION
         $contents = str_replace("[[DESCRIPTION]]",$this->asString($data['description']), $contents);
+        // MESSAGE
+        $og_title = str_replace("\$name", $this->asStringVar(), $data['ogtitle']);
+        //WOW, '.$name.'! You look so imposing when you are angry. Share this with your friends, let them know
+        $contents = str_replace("[[MESSAGE]]",$og_title, $contents);
 
         File::put(config('destinations.out2').$title.'.php', $contents);
 
+    }
+
+    public function asStringVar($var = '')
+    {
+        return "'.\$name.'";
     }
 
     public function makeFolder($data)
@@ -83,11 +90,17 @@ trait OperationsTrait{
     {
         $simple_name = $data['coperta']->getClientOriginalName();
         $path = $data['coperta']->move( config('destinations.sample'),  $simple_name);
-        copy ( $path , config('destinations.server_sample') . $simple_name );
-        return [
-            'path' => $path->getRealPath(),
-            'name' => $simple_name,
-        ];
+    }
+
+    public function moveCoords($data)
+    {
+            $image = $data['coordonate'];
+            $name = $image->getClientOriginalName();
+            $path = $image->move(config('destinations.local_coords'), $name);
+            return [
+                'path' => $path->getRealPath(),
+                'name' => $name,
+            ];
     }
 
     public function moveImages($data)
@@ -95,8 +108,10 @@ trait OperationsTrait{
         $title = strtolower($data['title_quiz']);
         $title = trim($title);
         foreach($data['photos'] as $k => $image){
-            $name = $image->getClientOriginalName();
-            $image->move(config('destinations.photos_dest'). $title, $name);
+            if($image){
+                $name = $image->getClientOriginalName();
+                $image->move(config('destinations.photos_dest'). $title, $name);
+            }
         }
     }
 

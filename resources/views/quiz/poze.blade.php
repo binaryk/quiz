@@ -20,12 +20,14 @@
 
     <script>
 
-        var upload_document = $("#photos").fileinput({
+        var photos = $("#photos").fileinput({
             'dropZoneEnabled' : true,
             'showCaption'     : false,
             'showUpload'      : false,
             'showRemove'      : false,
-            'uploadAsync'     : false,
+            'uploadAsync'     : true,
+            'uploadUrl'       : "{!! route('quiz.coordonate') !!}",
         });
+
         </script>
 @stop

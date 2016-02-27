@@ -48,7 +48,7 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
     return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
 }
 
-class [[CLASS_NAME]] extends CI_Controller {
+class Dasda extends CI_Controller {
 
     public $user = null;
     public $access_token;
@@ -68,14 +68,14 @@ class [[CLASS_NAME]] extends CI_Controller {
     }
 
     function index() {
-        $data['main'] = 'pages/[[QUIZ_NAME]]';
-        $data['title'] = [[TITLE]];
-        $data['og_title'] = [[OG_TITLE]];
-        $data['og_description'] = [[DESCRIPTION]];
-        $data['og_img'] = asset_url().'img/sample/[[SIMPLE_NAME]]';
-        $data['og_url'] = base_url() . '[[QUIZ_NAME]]';
+        $data['main'] = 'pages/dasda';
+        $data['title'] = "test";
+        $data['og_title'] = "asdas $name asdasda";
+        $data['og_description'] = "asdasd";
+        $data['og_img'] = asset_url().'img/sample/';
+        $data['og_url'] = base_url() . 'dasda';
         $scope = 'public_profile,publish_actions,user_friends';
-        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "[[QUIZ_NAME]]/app", "scope" => $scope));
+        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "dasda/app", "scope" => $scope));
         $data['login'] = $login;
         $this->load->view('index', $data);
     }
@@ -86,7 +86,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 
             $this->session->set_flashdata('message', '**Sorry you have to accept the permission to see your wiki**');
             $user = null;
-            redirect(base_url() . '[[QUIZ_NAME]]');
+            redirect(base_url() . 'dasda');
         }
 
         $this->user = $this->facebook->getUser();
@@ -133,7 +133,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 
 
 
-                $dest = Imagecreatefromjpeg(asset_url() . 'img/[[QUIZ_NAME]]/'.$per.'.jpg');
+                $dest = Imagecreatefromjpeg(asset_url() . 'img/dasda/'.$per.'.jpg');
                 $src = Imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
                 $white = ImageColorAllocate($dest, 255, 255, 255);
                 $black = ImageColorAllocate($dest, 0, 0, 0);
@@ -147,7 +147,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-                imagettfstroketext($dest, 28, 0, [[X]], [[Y]], $white, $black, $font_path, $fullname, 2);
+                imagettfstroketext($dest, 28, 0, , , $white, $black, $font_path, $fullname, 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 
@@ -157,7 +157,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 //                Imagecopymerge($dest, $src, 61, 135, 0, 0, 200, 200, 100); // nu ai nevoie de ea o comentezi. save
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
-                imagejpeg($dest, 'uploads/[[QUIZ_NAME]]/result_' . $user_profile['id'] . '.jpg');
+                imagejpeg($dest, 'uploads/dasda/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
 
@@ -166,7 +166,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 
                 $user_id = $user_profile['id'];
                 $this->session->set_userdata('user_id', $user_id);
-                redirect(base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name);
+                redirect(base_url() . 'dasda/result/' . $user_id . '/' . $name);
             } catch (FacebookApiException $e) {
 
                 echo'error';
@@ -179,18 +179,18 @@ class [[CLASS_NAME]] extends CI_Controller {
 
     function result($user_id, $name) {
 
-        $data['main'] = "pages/[[QUIZ_NAME]]";
-        $data['title'] = [[TITLE]];
-        $data['og_title'] = [[OG_TITLE]];
-        $data['og_description'] = [[DESCRIPTION]];
-        $data['og_img'] = base_url() . 'uploads/[[QUIZ_NAME]]/result_' . $user_id . '.jpg';
-        $data['og_url'] = base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name . '?share=1';
+        $data['main'] = "pages/dasda";
+        $data['title'] = "test";
+        $data['og_title'] = "asdas $name asdasda";
+        $data['og_description'] = "asdasd";
+        $data['og_img'] = base_url() . 'uploads/dasda/result_' . $user_id . '.jpg';
+        $data['og_url'] = base_url() . 'dasda/result/' . $user_id . '/' . $name . '?share=1';
         $data['user_id'] = $user_id;
         $data['name'] = $name;
-        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "[[QUIZ_NAME]]/app"));
+        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "dasda/app"));
         $this->load->view('index', $data);
         $fb = new FacebookDebugger();
-        $fb->reload(base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name);
+        $fb->reload(base_url() . 'dasda/result/' . $user_id . '/' . $name);
 
         $sqluser = $this->config->item('db_user');
         $sqlpass = $this->config->item('db_password');
@@ -218,7 +218,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $ffullname = $user_profile['name'];
                 $fuserid = $user_profile['id'];
                 $fdate = date("Y-m-d");
-                $sharelink =  base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name . '?share=1';
+                $sharelink =  base_url() . 'dasda/result/' . $user_id . '/' . $name . '?share=1';
                 $this->user = $this->facebook->getUser();
                 $shareper = rand(1, 1000);
 
