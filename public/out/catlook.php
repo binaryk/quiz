@@ -69,10 +69,10 @@ class Catlook extends CI_Controller {
 
     function index() {
         $data['main'] = 'pages/catlook';
-        $data['title'] = "Hello catlook";
-        $data['og_title'] = "Og title";
-        $data['og_description'] = "Description catlook ";
-        $data['og_img'] = asset_url().'img/sample/edu.jpg';
+        $data['title'] = "asljda";
+        $data['og_title'] = "asldja ";
+        $data['og_description'] = "asdadsada";
+        $data['og_img'] = asset_url().'img/sample/err.png';
         $data['og_url'] = base_url() . 'catlook';
         $scope = 'public_profile,publish_actions,user_friends';
         $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "catlook/app", "scope" => $scope));
@@ -147,7 +147,7 @@ class Catlook extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-                imagettfstroketext($dest, 28, 0, 213, 409, $white, $black, $font_path, $fullname, 2);
+                imagettfstroketext($dest, 28, 0, 47.200000000000045, 171.2, $white, $black, $font_path, $fullname, 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 
@@ -180,9 +180,9 @@ class Catlook extends CI_Controller {
     function result($user_id, $name) {
 
         $data['main'] = "pages/catlook";
-        $data['title'] = "How Would You Look If You Were A Cat?";
-        $data['og_title'] = "How Would You Look If You Were A Cat?";
-        $data['og_description'] = "Cats are so cute! Sometimes they look like furry human beings! Find your cat equivalent now! Press Start!";
+        $data['title'] = "asljda";
+        $data['og_title'] = "asldja ";
+        $data['og_description'] = "asdadsada";
         $data['og_img'] = base_url() . 'uploads/catlook/result_' . $user_id . '.jpg';
         $data['og_url'] = base_url() . 'catlook/result/' . $user_id . '/' . $name . '?share=1';
         $data['user_id'] = $user_id;

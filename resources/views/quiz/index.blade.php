@@ -3,6 +3,7 @@
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('packages/fileinput/css/fileinput.min.css') }}">
     <link rel="stylesheet" href="{!! asset('components/cropper/dist/cropper.min.css') !!}">
+    <link rel="stylesheet" href="{!! asset('components/colorpicker/jquery.colorpicker.css') !!}">
 @endsection
 
 @section('content')
@@ -18,6 +19,7 @@
                             @include('quiz.coperta')
                             @include('quiz.coordonate')
                             @include('quiz.poze')
+                            @include('quiz.colorpicker')
                         <input type="hidden" class="hidden" name="_token" value="{!! csrf_token() !!}">
                     </div>
                 </div><!-- panel -->
@@ -34,4 +36,26 @@
 @section('after-scripts-end')
     <script type="text/javascript" src = "{{asset( 'packages/fileinput/js/fileinput.min.js') }}"></script>
     <script src="{!! asset('components/cropper/dist/cropper.min.js') !!}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js" type="text/javascript"></script>
+    <script src="{!! asset('components/colorpicker/jquery.colorpicker.js') !!}"></script>
+    <!-- Plugin -->
+    <script src="{!! asset('components/colorpicker/jquery.colorpicker.js') !!}"></script>
+    <link href="{!! asset('components/colorpicker/jquery.colorpicker.css') !!}" rel="stylesheet" type="text/css"/>
+    <!-- Plugin extensions -->
+    <script src="{!! asset('components/colorpicker/i18n/jquery.ui.colorpicker-nl.js') !!}"></script>
+    <script src="{!! asset('components/colorpicker/parts/jquery.ui.colorpicker-rgbslider.js') !!}"></script>
+    <script src="{!! asset('components/colorpicker/parts/jquery.ui.colorpicker-memory.js') !!}"></script>
+
+    <script>
+        (function($) {
+            if (!$.curCSS) {
+                $.curCSS = $.css;
+            }
+        })(jQuery);
+        $(function() {
+            $('#colorpicker-popup').colorpicker({
+                colorFormat : 'RGB'
+            });
+        });
+    </script>
 @stop

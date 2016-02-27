@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "cropper": "~2.3.0"
+    "cropper": "~2.3.0",
+    "colorpicker": "~1.2.0"
   }
 }

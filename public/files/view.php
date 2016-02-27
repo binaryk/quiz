@@ -74,7 +74,7 @@ if (isset($_GET['step']) && $_GET['step'] == 1) {
     Not happy with results? Try again
 </a>
 </div>
-<div class="result-image-description">[[MESSAGE]] </div>
+<div class="result-image-description">[[MESSAGE]]</div>
 <p style="margin: 10px 0 0">
     <small>
         <iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FQuizOcean-968665643215083&amp;locale=en_GB&amp;width=130&amp;height=20&amp;colorscheme=light&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;send=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden;

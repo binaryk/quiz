@@ -55,9 +55,9 @@ trait OperationsTrait{
         // DESCRIPTION
         $contents = str_replace("[[DESCRIPTION]]",$this->asString($data['description']), $contents);
         // MESSAGE
-        $og_title = str_replace("\$name", $this->asStringVar(), $data['ogtitle']);
+        $view = str_replace("\$name", $this->asStringVar(), $data['title_view']);
         //WOW, '.$name.'! You look so imposing when you are angry. Share this with your friends, let them know
-        $contents = str_replace("[[MESSAGE]]",$og_title, $contents);
+        $contents = str_replace("[[MESSAGE]]",$view, $contents);
 
         File::put(config('destinations.out2').$title.'.php', $contents);
 
@@ -121,7 +121,8 @@ trait OperationsTrait{
             'title_quiz' =>
                 \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
                     ->name('title_quiz')
-                    ->caption('Title quiz')
+                    ->placeholder('catlook')
+                    ->caption('Quiz name')
                     ->class('form-control data-source')
                     ->controlsource('title_quiz')
                     ->controltype('textbox')
@@ -130,7 +131,7 @@ trait OperationsTrait{
             'title' =>
                 \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
                     ->name('title')
-                    ->help('Care apare jos, sub poza')
+                    ->placeholder('How Would You Look If You Were A Cat?')
                     ->caption('Title')
                     ->class('form-control data-source')
                     ->controlsource('title')
@@ -140,9 +141,21 @@ trait OperationsTrait{
             'ogtitle' =>
                 \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
                     ->name('ogtitle')
+                    ->placeholder('How Would You Look If You Were A Cat?')
                     ->caption('Og Title')
                     ->class('form-control data-source')
                     ->controlsource('ogtitle')
+                    ->controltype('textbox')
+                    ->maxlength(255)
+                    ->out(),
+            'title_view' =>
+                \Easy\Form\Textbox::make('~layouts.form.controls.textboxes.textbox')
+                    ->name('title_view')
+                    ->placeholder('WOW, $name ! You look so imposing when you are angry. Share this with your friends, let them know ')
+                    ->help('Se poate pune cu variabila $name')
+                    ->caption('Title view')
+                    ->class('form-control data-source')
+                    ->controlsource('title_view')
                     ->controltype('textbox')
                     ->maxlength(255)
                     ->out(),
