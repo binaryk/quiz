@@ -35,6 +35,7 @@ class QuizController extends Controller
 
     public function store()
     {
+
         $input = Input::all();
         // controller
         $this->readFile1($input);

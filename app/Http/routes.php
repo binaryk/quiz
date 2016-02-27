@@ -15,7 +15,7 @@ $router->group(['namespace' => 'Frontend'], function () use ($router) {
     require (__DIR__ . '/Routes/Frontend/Frontend.php');
     require (__DIR__ . '/Routes/Frontend/Access.php');
 });
-$router->group(['namespace' => 'Quiz', 'middleware' => 'auth'], function () use ($router) {
+$router->group(['namespace' => 'Quiz'/*, 'middleware' => 'auth'*/], function () use ($router) {
     get('new-quiz', 'QuizController@index')->name('quiz.create');
     post('new-quiz', 'QuizController@store')->name('quiz.store');
     post('coordonate', 'QuizController@coordonate')->name('quiz.coordonate');
