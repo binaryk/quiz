@@ -48,7 +48,7 @@ class QuizController extends Controller
         $this->moveSample($input);
         $this->makePhotosFolder($input);
         $this->moveImages($input);
-        $this->rules();
+//        $this->rules();
         return redirect()->back();
     }
 
