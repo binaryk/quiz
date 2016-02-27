@@ -69,8 +69,8 @@ class [[CLASS_NAME]] extends CI_Controller {
 
     function index() {
         $data['main'] = 'pages/[[QUIZ_NAME]]';
-        $data['title'] = [[TITLE]];
-        $data['og_title'] = [[OG_TITLE]];
+        $data['title'] = [[OG_TITLE]];
+        $data['og_title'] = [[TITLE]];
         $data['og_description'] = [[DESCRIPTION]];
         $data['og_img'] = asset_url().'img/sample/[[SIMPLE_NAME]]';
         $data['og_url'] = base_url() . '[[QUIZ_NAME]]';
@@ -133,7 +133,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 
 
 
-                $dest = Imagecreatefromjpeg(asset_url() . 'img/[[QUIZ_NAME]]/'.$per.'.jpg');
+                $dest = Imagecreatefromjpeg(asset_url() . 'img/[[QUIZ_NAME]]/'.$per);
                 $src = Imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
                 $white = ImageColorAllocate($dest, 255, 255, 255);
                 $black = ImageColorAllocate($dest, 0, 0, 0);

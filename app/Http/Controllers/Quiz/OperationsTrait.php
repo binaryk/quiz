@@ -57,7 +57,7 @@ trait OperationsTrait{
         // DESCRIPTION
         $contents = str_replace("[[DESCRIPTION]]",$this->asString($data['description']), $contents);
 
-        File::put(config('destinations.out2').$title.'_view.php', $contents);
+        File::put(config('destinations.out2').$title.'.php', $contents);
 
     }
 
