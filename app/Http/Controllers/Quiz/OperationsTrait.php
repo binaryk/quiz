@@ -76,7 +76,7 @@ trait OperationsTrait{
     {
         $title = strtolower($data['title_quiz']);
         $title = trim($title);
-        if (! file_exists('/var/www/html/uploads/'. $title) &&  ! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
+        if (! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
             die('Failed to create folders...');
         }
     }
