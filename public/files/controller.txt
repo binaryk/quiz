@@ -154,7 +154,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
 
-                Imagecopymerge($dest, $src, 61, 135, 0, 0, [[X]], [[Y]], 100); // nu ai nevoie de ea o comentezi. save
+                Imagecopymerge($dest, $src, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100); // nu ai nevoie de ea o comentezi. save
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
                 imagejpeg($dest, 'uploads/[[QUIZ_NAME]]/result_' . $user_profile['id'] . '.jpg');

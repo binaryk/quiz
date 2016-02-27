@@ -31,6 +31,10 @@ trait OperationsTrait{
         $contents = str_replace("[[X]]",$data['x'], $contents);
         // Y
         $contents = str_replace("[[Y]]",$data['y'], $contents);
+        // X
+        $contents = str_replace("[[WIDTH]]",$data['width'], $contents);
+        // Y
+        $contents = str_replace("[[HEIGHT]]",$data['height'], $contents);
 
         File::put(config('destinations.out1').$title.'.php', $contents);
 
