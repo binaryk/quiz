@@ -153,8 +153,15 @@ class [[CLASS_NAME]] extends CI_Controller {
 
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
+                $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
+                list($rwidth, $rheight) = getimagesize($filename);
 
-                Imagecopymerge($dest, $src, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100); // nu ai nevoie de ea o comentezi. save
+                $thumb = imagecreatetruecolor([[WIDTH]], [[HEIGHT]]);
+                $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
+
+                imagecopyresized($thumb, $source, 0, 0, 0, 0, [[WIDTH]], [[HEIGHT]], $rwidth, $rheight);
+                imagejpeg($thumb, 'uploads/' . $user_profile['id'] . '.jpg');
+                Imagecopymerge($dest, $thumb, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100);
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
                 imagejpeg($dest, 'uploads/[[QUIZ_NAME]]/result_' . $user_profile['id'] . '.jpg');

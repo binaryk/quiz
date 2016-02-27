@@ -70,9 +70,9 @@ class Test extends CI_Controller {
     function index() {
         $data['main'] = 'pages/test';
         $data['title'] = "test";
-        $data['og_title'] = "WOw $name you are the best";
-        $data['og_description'] = "ajdalsjfa";
-        $data['og_img'] = asset_url().'img/sample/ionela.jpg';
+        $data['og_title'] = "test";
+        $data['og_description'] = "test";
+        $data['og_img'] = asset_url().'img/sample/test_simple.jpg';
         $data['og_url'] = base_url() . 'test';
         $scope = 'public_profile,publish_actions,user_friends';
         $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "test/app", "scope" => $scope));
@@ -147,14 +147,14 @@ class Test extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-                imagettfstroketext($dest, 28, 0, 47.19999999999996, 171.20000000000002, $white, $black, $font_path, $fullname, 2);
+                //imagettfstroketext($dest, 28, 0, , , $white, $black, $font_path, $fullname, 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
 
-//                Imagecopymerge($dest, $src, 61, 135, 0, 0, 200, 200, 100); // nu ai nevoie de ea o comentezi. save
+                Imagecopymerge($dest, $src, , , 0, 0, , , 100); // nu ai nevoie de ea o comentezi. save
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
                 imagejpeg($dest, 'uploads/test/result_' . $user_profile['id'] . '.jpg');
@@ -181,8 +181,8 @@ class Test extends CI_Controller {
 
         $data['main'] = "pages/test";
         $data['title'] = "test";
-        $data['og_title'] = "WOw $name you are the best";
-        $data['og_description'] = "ajdalsjfa";
+        $data['og_title'] = "test";
+        $data['og_description'] = "test";
         $data['og_img'] = base_url() . 'uploads/test/result_' . $user_id . '.jpg';
         $data['og_url'] = base_url() . 'test/result/' . $user_id . '/' . $name . '?share=1';
         $data['user_id'] = $user_id;
