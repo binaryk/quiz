@@ -104,8 +104,9 @@ trait OperationsTrait{
         // DESCRIPTION
         $contents = str_replace("[[DESCRIPTION]]",$this->asString($data['description']), $contents);
         // MESSAGE
-        if(strpos($data['text'], '$name')) {
-            $view = str_replace("\$name", $this->asStringVar(), $data['title_view']);
+        if(strpos($data['text'], '$name') !== false) {
+            $tmp      = $this->asString($data['title_view']);
+            $view     = str_replace("\$name",' ".$name . " ', $tmp);
         }else{
             $view = $data['title_view'];
         }
