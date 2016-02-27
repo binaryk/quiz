@@ -106,7 +106,7 @@ trait OperationsTrait{
         // MESSAGE
         if(strpos($data['text'], '$name') !== false) {
             $tmp      = $this->asString($data['title_view']);
-            $view     = str_replace("\$name",' ".$name . " ', $tmp);
+            $view     = str_replace("\$name","' .\$name . '", $tmp);
         }else{
             $view = $data['title_view'];
         }
