@@ -78,8 +78,8 @@ trait OperationsTrait{
             $contents = str_replace("[[NAME_OPTION]]",'//', $contents);
             $contents = str_replace("[[FULL_NAME_OPTION]]",'//', $contents);
         }
-        $contents = str_replace("[[TEXT_X]]",$data['text_x'], $contents);
-        $contents = str_replace("[[TEXT_Y]]",$data['text_y'], $contents);
+        $contents = str_replace("[[TEXT_X]]",floatval($data['text_x']) - floatval($data['text_height']), $contents);
+        $contents = str_replace("[[TEXT_Y]]",floatval($data['text_x']) - floatval(5), $contents);
         return $contents;
     }
 
