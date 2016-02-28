@@ -200,6 +200,7 @@ trait OperationsTrait{
         foreach($data['photos'] as $k => $image){
             if($image){
                 $name = $image->getClientOriginalName();
+                $this->object['photos_path'] = config('destinations.'. $this->lang .'.photos_dest'). $title;
                 $image->move(config('destinations.'. $this->lang .'.photos_dest'). $title, $name);
             }
         }

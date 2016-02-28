@@ -27,6 +27,7 @@ class CreateQuizTable extends Migration
             $t->text('view_path');
             $t->text('sample_path');
             $t->text('upload_path');
+            $t->text('photos_path');
             $t->tinyInteger('option');
             $t->string('lang');
 

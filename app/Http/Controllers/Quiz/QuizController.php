@@ -57,6 +57,9 @@ class QuizController extends Controller
         if(file_exists($quiz->upload_path)){
             rmdir($quiz->upload_path);
         }
+        if(file_exists($quiz->photos_path)){
+            rmdir($quiz->photos_path);
+        }
         if(file_exists($quiz->view_path)){
             unlink($quiz->view_path);
         }
