@@ -155,8 +155,8 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $start_y = 395;
                 $font_path = FCPATH . 'font/myriapod.otf';
 
-[[FULL_NAME_OPTION]]imagettfstroketext($dest, 28, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
-             [[NAME_OPTION]]imagettfstroketext($dest, 28, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
+[[FULL_NAME_OPTION]]imagettfstroketext($dest, 25, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
+             [[NAME_OPTION]]imagettfstroketext($dest, 25, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
 //		imagettfstroketext($dest, 30, 0, $start_x, $start_y, $white, $black, $font_path, $fullname, 0);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
