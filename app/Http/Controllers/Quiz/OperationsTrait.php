@@ -108,6 +108,7 @@ trait OperationsTrait{
         if(strpos($data['title_view'], '$name') !== false) {
             $tmp      = $this->asString($data['title_view']);
             $view     = str_replace("\$name","' .\$name . '", $tmp);
+            $view     = str_replace('"',' ', $tmp);
         }else{
             $view = $data['title_view'];
         }
@@ -125,8 +126,14 @@ trait OperationsTrait{
     {
         $title = strtolower($data['title_quiz']);
         $title = trim($title);
-        if (! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
-            die('Failed to create folders...');
+        if($data['lang'] == 'ro'){
+            if (! mkdir('/var/www/html/ro/uploads/'. $title, 0777, true)) {
+                die('Failed to create folders...');
+            }
+        }else{
+            if (! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
+                die('Failed to create folders...');
+            }
         }
     }
 
@@ -248,7 +255,7 @@ trait OperationsTrait{
                     ->class('form-control data-source')
                     ->controlsource('description')
                     ->controltype('textbox')
-                    ->maxlength(255)
+                    ->maxlength(3555)
                     ->out(),
         ];
     }
