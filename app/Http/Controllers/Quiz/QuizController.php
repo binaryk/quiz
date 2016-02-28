@@ -55,10 +55,10 @@ class QuizController extends Controller
             unlink($quiz->controller_path);
         }
         if(file_exists($quiz->upload_path)){
-            rmdir($quiz->upload_path);
+            rrmdir($quiz->upload_path);
         }
         if(file_exists($quiz->photos_path)){
-            rmdir($quiz->photos_path);
+            rrmdir($quiz->photos_path);
         }
         if(file_exists($quiz->view_path)){
             unlink($quiz->view_path);
@@ -70,6 +70,19 @@ class QuizController extends Controller
         $quiz->delete();
 
         return Response::json(['message' => 'Stergere cu success']);
+    }
+
+    function rrmdir($dir) {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir") rrmdir($dir."/".$object); else unlink($dir."/".$object);
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
     }
 
     public function store()
