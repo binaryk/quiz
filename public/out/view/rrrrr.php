@@ -66,10 +66,10 @@ if (isset($_GET['step']) && $_GET['step'] == 1) {
 <div style="padding: 10px 0 5px">
 </div>
 <a href="#" onclick="return share_and_redirect(\''.$url.'?share=1\', \''.$url.'?share=1\')">
-<img src="'. base_url() .'uploads/eduaed/result_'. $user_id .'.jpg" class="replace-loader" alt="">
+<img src="'. base_url() .'uploads/rrrrr/result_'. $user_id .'.jpg" class="replace-loader" alt="">
 </a>
 <div id="try_again">
-    <a class="btn btn-default try-again-btn" href="'. base_url().'eduaed?step=1">
+    <a class="btn btn-default try-again-btn" href="'. base_url().'rrrrr?step=1">
         <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
     Not happy with results? Try again
 </a>
@@ -95,12 +95,12 @@ if (isset($_GET['step']) && $_GET['step'] == 1) {
 
                             echo '
 <div class="quiz-cover">
-<a href="'. base_url().'eduaed?step=1" class="start-load main-image">
+<a href="'. base_url().'rrrrr?step=1" class="start-load main-image">
 <img src="'. asset_url().'img/sample/[[SIMPLE_NAME]]" class="replace-loader" alt=""/>
 </a>
 <div style="padding: 10px 0 5px">
 </div>
-<a class="btn btn-primary btn-lg start-load" href="'. base_url().'eduaed?step=1">Start</a>
+<a class="btn btn-primary btn-lg start-load" href="'. base_url().'rrrrr?step=1">Start</a>
 ';
                         }
                         ?>

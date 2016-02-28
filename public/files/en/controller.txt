@@ -135,7 +135,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 
                 $dest = Imagecreatefromjpeg(asset_url() . 'img/[[QUIZ_NAME]]/'.$per.'.jpg');
                 $src = Imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
-                $white = ImageColorAllocate($dest, 255, 255, 255);
+                $white = ImageColorAllocate($dest, [[COLOR]]);
                 $black = ImageColorAllocate($dest, 0, 0, 0);
                 $blackshadow = ImageColorAllocate($dest, 0, 0, 0, 40);
                 $whiteshadow = ImageColorAllocate($dest, 255, 255, 255, 40);

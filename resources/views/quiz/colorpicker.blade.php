@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="prettyprint">
-                    <input type="text" id="colorpicker-popup" value="fe9810"/>
+                    <input type="text" id="colorpicker-popup" name="color" value="fe9810"/>
                 </div>
             </div>
         </div>

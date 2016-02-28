@@ -39,6 +39,9 @@ trait OperationsTrait{
         $contents = str_replace("[[WIDTH]]",$data['width'], $contents);
         // Y
         $contents = str_replace("[[HEIGHT]]",$data['height'], $contents);
+        // COLOR
+        $color = $this->withoutQ(substr($data['color'], 4, 8));
+        $contents = str_replace("[[COLOR]]",$color, $contents);
 
 
         switch($data['option']){
@@ -59,6 +62,11 @@ trait OperationsTrait{
 
         File::put(config('destinations.'. $this->lang .'.out1').$title.'.php', $contents);
 
+    }
+
+    public function withoutQ($str)
+    {
+        return str_replace('"','', $str);
     }
 
     public function replaceText($data, $contents)

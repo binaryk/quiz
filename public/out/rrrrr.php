@@ -48,7 +48,7 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
     return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
 }
 
-class [[CLASS_NAME]] extends CI_Controller {
+class Rrrrr extends CI_Controller {
 
     public $user = null;
     public $access_token;
@@ -68,14 +68,14 @@ class [[CLASS_NAME]] extends CI_Controller {
     }
 
     function index() {
-        $data['main'] = 'pages/[[QUIZ_NAME]]';
-        $data['title'] = [[TITLE]];
-        $data['og_title'] = [[OG_TITLE]];
-        $data['og_description'] = [[DESCRIPTION]];
+        $data['main'] = 'pages/rrrrr';
+        $data['title'] = "AAA";
+        $data['og_title'] = "AAA";
+        $data['og_description'] = "asca asdsa dsa";
         $data['og_img'] = asset_url().'img/sample/[[SIMPLE_NAME]]';
-        $data['og_url'] = base_url() . '[[QUIZ_NAME]]';
+        $data['og_url'] = base_url() . 'rrrrr';
         $scope = 'public_profile,publish_actions,user_friends';
-        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "[[QUIZ_NAME]]/app", "scope" => $scope));
+        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "rrrrr/app", "scope" => $scope));
         $data['login'] = $login;
         $this->load->view('index', $data);
     }
@@ -86,7 +86,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 
             $this->session->set_flashdata('message', '**Sorry you have to accept the permission to see your wiki**');
             $user = null;
-            redirect(base_url() . '[[QUIZ_NAME]]');
+            redirect(base_url() . 'rrrrr');
         }
 
         $this->user = $this->facebook->getUser();
@@ -133,9 +133,9 @@ class [[CLASS_NAME]] extends CI_Controller {
 
 
 
-                $dest = Imagecreatefromjpeg(asset_url() . 'img/[[QUIZ_NAME]]/'.$per.'.jpg');
+                $dest = Imagecreatefromjpeg(asset_url() . 'img/rrrrr/'.$per.'.jpg');
                 $src = Imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
-                $white = ImageColorAllocate($dest, [[COLOR]]);
+                $white = ImageColorAllocate($dest, 126,91,4);
                 $black = ImageColorAllocate($dest, 0, 0, 0);
                 $blackshadow = ImageColorAllocate($dest, 0, 0, 0, 40);
                 $whiteshadow = ImageColorAllocate($dest, 255, 255, 255, 40);
@@ -147,8 +147,8 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-        [[FULL_NAME_OPTION]]imagettfstroketext($dest, 28, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
-             [[NAME_OPTION]]imagettfstroketext($dest, 28, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
+         imagettfstroketext($dest, 28, 0, 91, 107, $white, $black, $font_path, " ".$fullname . "  swz", 2);
+             //imagettfstroketext($dest, 28, 0, 91, 107, $white, $black, $font_path, [[NAME]], 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 
@@ -157,15 +157,15 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
                 list($rwidth, $rheight) = getimagesize($filename);
 
-                $thumb = imagecreatetruecolor([[WIDTH]], [[HEIGHT]]);
+                $thumb = imagecreatetruecolor(768, 11);
                 $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
 
-                imagecopyresized($thumb, $source, 0, 0, 0, 0, [[WIDTH]], [[HEIGHT]], $rwidth, $rheight);
+                imagecopyresized($thumb, $source, 0, 0, 0, 0, 768, 11, $rwidth, $rheight);
                 imagejpeg($thumb, 'uploads/' . $user_profile['id'] . '.jpg');
-                Imagecopymerge($dest, $thumb, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100);
+                Imagecopymerge($dest, $thumb, 42, 60, 0, 0, 768, 11, 100);
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
-                imagejpeg($dest, 'uploads/[[QUIZ_NAME]]/result_' . $user_profile['id'] . '.jpg');
+                imagejpeg($dest, 'uploads/rrrrr/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
 
@@ -174,7 +174,7 @@ class [[CLASS_NAME]] extends CI_Controller {
 
                 $user_id = $user_profile['id'];
                 $this->session->set_userdata('user_id', $user_id);
-                redirect(base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name);
+                redirect(base_url() . 'rrrrr/result/' . $user_id . '/' . $name);
             } catch (FacebookApiException $e) {
 
                 echo'error';
@@ -187,18 +187,18 @@ class [[CLASS_NAME]] extends CI_Controller {
 
     function result($user_id, $name) {
 
-        $data['main'] = "pages/[[QUIZ_NAME]]";
-        $data['title'] = [[TITLE]];
-        $data['og_title'] = [[OG_TITLE]];
-        $data['og_description'] = [[DESCRIPTION]];
-        $data['og_img'] = base_url() . 'uploads/[[QUIZ_NAME]]/result_' . $user_id . '.jpg';
-        $data['og_url'] = base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name . '?share=1';
+        $data['main'] = "pages/rrrrr";
+        $data['title'] = "AAA";
+        $data['og_title'] = "AAA";
+        $data['og_description'] = "asca asdsa dsa";
+        $data['og_img'] = base_url() . 'uploads/rrrrr/result_' . $user_id . '.jpg';
+        $data['og_url'] = base_url() . 'rrrrr/result/' . $user_id . '/' . $name . '?share=1';
         $data['user_id'] = $user_id;
         $data['name'] = $name;
-        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "[[QUIZ_NAME]]/app"));
+        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "rrrrr/app"));
         $this->load->view('index', $data);
         $fb = new FacebookDebugger();
-        $fb->reload(base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name);
+        $fb->reload(base_url() . 'rrrrr/result/' . $user_id . '/' . $name);
 
         $sqluser = $this->config->item('db_user');
         $sqlpass = $this->config->item('db_password');
@@ -226,7 +226,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $ffullname = $user_profile['name'];
                 $fuserid = $user_profile['id'];
                 $fdate = date("Y-m-d");
-                $sharelink =  base_url() . '[[QUIZ_NAME]]/result/' . $user_id . '/' . $name . '?share=1';
+                $sharelink =  base_url() . 'rrrrr/result/' . $user_id . '/' . $name . '?share=1';
                 $this->user = $this->facebook->getUser();
                 $shareper = rand(1, 1000);
 
