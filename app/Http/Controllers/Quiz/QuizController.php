@@ -70,6 +70,9 @@ class QuizController extends Controller
     {
 
         $input = Input::all();
+        if(Quiz::where('title_quiz', $input['title_quiz'])->first()){
+            return redirect()->back()->withInput();
+        }
         $this->object = [
             "lang"                    => $input['lang'],
             "title_quiz"              => $input['title_quiz'],
