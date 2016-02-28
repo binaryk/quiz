@@ -11,7 +11,8 @@ trait OperationsTrait{
 
     public function readFile1($data)
     {
-        $contents = File::get(config('destinations.in1'));
+
+        $contents = File::get(config('destinations.'. $this->lang .'.in1'));
         //REPLACE LA NUME QUIZ
         $title = strtolower($data['title_quiz']);
         $title = trim($title);
@@ -56,7 +57,7 @@ trait OperationsTrait{
                 break;
         }
 
-        File::put(config('destinations.out1').$title.'.php', $contents);
+        File::put(config('destinations.'. $this->lang .'.out1').$title.'.php', $contents);
 
     }
 
@@ -85,7 +86,7 @@ trait OperationsTrait{
 
     public function readFile2($data)
     {
-        $contents = File::get(config('destinations.in2'));
+        $contents = File::get(config('destinations.'. $this->lang .'.in2'));
         //REPLACE LA NUME QUIZ
         $title = strtolower($data['title_quiz']);
         $title = trim($title);
@@ -112,7 +113,7 @@ trait OperationsTrait{
         }
         //WOW, '.$name.'! You look so imposing when you are angry. Share this with your friends, let them know
         $contents = str_replace("[[MESSAGE]]",$view, $contents);
-        File::put(config('destinations.out2').$title.'.php', $contents);
+        File::put(config('destinations.'. $this->lang .'.out2').$title.'.php', $contents);
     }
 
     public function asStringVar($var = '')
@@ -133,7 +134,7 @@ trait OperationsTrait{
     {
         $title = strtolower($data['title_quiz']);
         $title = trim($title);
-        if (! file_exists(config('destinations.photos_dest'). $title) &&  ! mkdir(config('destinations.photos_dest'). $title, 0777, true)) {
+        if (! file_exists(config('destinations.'. $this->lang .'.photos_dest'). $title) &&  ! mkdir(config('destinations.'. $this->lang .'.photos_dest'). $title, 0777, true)) {
             die('Failed to create folders...');
         }
     }
@@ -142,7 +143,7 @@ trait OperationsTrait{
     {
         if(array_key_exists('coperta', $data)) {
             $simple_name = $data['coperta']->getClientOriginalName();
-            $path = $data['coperta']->move(config('destinations.sample'), $simple_name);
+            $path = $data['coperta']->move(config('destinations.'. $this->lang .'.sample'), $simple_name);
         }
     }
 
@@ -150,7 +151,7 @@ trait OperationsTrait{
     {
             $image = $data['coordonate'];
             $name = $image->getClientOriginalName();
-            $path = $image->move(config('destinations.local_coords'), $name);
+            $path = $image->move(config('destinations.'. $this->lang .'.local_coords'), $name);
             return [
                 'path' => $path->getRealPath(),
                 'name' => $name,
@@ -161,7 +162,7 @@ trait OperationsTrait{
     {
             $image = $data['coordonate_text'];
             $name = $image->getClientOriginalName();
-            $path = $image->move(config('destinations.local_coords'), $name);
+            $path = $image->move(config('destinations.'. $this->lang .'.local_coords'), $name);
             return [
                 'path' => $path->getRealPath(),
                 'name' => $name,
@@ -175,7 +176,7 @@ trait OperationsTrait{
         foreach($data['photos'] as $k => $image){
             if($image){
                 $name = $image->getClientOriginalName();
-                $image->move(config('destinations.photos_dest'). $title, $name);
+                $image->move(config('destinations.'. $this->lang .'.photos_dest'). $title, $name);
             }
         }
     }

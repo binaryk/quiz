@@ -15,6 +15,7 @@
                     <div class="panel-heading"><i class="fa fa-home"></i> Quiz nou </div>
 
                     <div class="panel-body">
+                            @include('quiz.lang')
                             @include('quiz.fields')
                             @include('quiz.coperta')
                             @include('quiz.select')

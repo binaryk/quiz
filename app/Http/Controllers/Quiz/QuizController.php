@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Input;
 class QuizController extends Controller
 {
     use OperationsTrait;
+    public $lang;
+    public function __construct()
+    {
+      $this->lang = 'en';
+    }
 
     public function index()
     {
@@ -37,6 +42,8 @@ class QuizController extends Controller
     {
 
         $input = Input::all();
+        $this->lang = $input['lang'];
+
         // controller
         $this->readFile1($input);
         // view
