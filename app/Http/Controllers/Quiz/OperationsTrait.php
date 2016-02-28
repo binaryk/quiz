@@ -42,7 +42,8 @@ trait OperationsTrait{
         $contents = str_replace("[[HEIGHT]]",$data['height'], $contents);
         // COLOR
         if($data['color'] !== "fe9810"){
-            $color = substr($data['color'], 4, 8);
+            $col = rtrim($data['color'], ")");
+            $color = ltrim($col, "rgb(");
         }else{
             $color = "255, 255, 255";
         }
