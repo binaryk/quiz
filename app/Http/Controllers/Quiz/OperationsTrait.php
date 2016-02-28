@@ -138,7 +138,7 @@ trait OperationsTrait{
     {
         $title = strtolower($data['title_quiz']);
         $title = trim($title);
-        if($data['lang'] == 'ro'){
+        if($data['lang'] === 'ro'){
             if (! mkdir('/var/www/html/ro/uploads/'. $title, 0777, true)) {
                 die('Failed to create folders...');
             }
@@ -147,7 +147,7 @@ trait OperationsTrait{
             if (! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
                 die('Failed to create folders...');
             }
-            $this->object['upload_path'] = '/var/www/html/ro/uploads/'. $title;
+            $this->object['upload_path'] = '/var/www/html/uploads/'. $title;
         }
 
     }
