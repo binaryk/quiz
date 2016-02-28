@@ -42,6 +42,8 @@ class QuizController extends Controller
     {
 
         $input = Input::all();
+
+
         $this->lang = $input['lang'];
 
         // controller

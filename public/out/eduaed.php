@@ -147,8 +147,8 @@ class Eduaed extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-         imagettfstroketext($dest, 28, 0, 96.00000000000009, 95.99999999999999, $white, $black, $font_path, " ".$fullname . "  is asdjaspdjsadpas d asdasd", 2);
-             //imagettfstroketext($dest, 28, 0, 96.00000000000009, 95.99999999999999, $white, $black, $font_path, [[NAME]], 2);
+         imagettfstroketext($dest, 28, 0, 91, 107, $white, $black, $font_path, " ".$fullname . "  swz", 2);
+             //imagettfstroketext($dest, 28, 0, 91, 107, $white, $black, $font_path, [[NAME]], 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 
@@ -157,12 +157,12 @@ class Eduaed extends CI_Controller {
                 $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
                 list($rwidth, $rheight) = getimagesize($filename);
 
-                $thumb = imagecreatetruecolor(768, 768);
+                $thumb = imagecreatetruecolor(768, 11);
                 $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
 
-                imagecopyresized($thumb, $source, 0, 0, 0, 0, 768, 768, $rwidth, $rheight);
+                imagecopyresized($thumb, $source, 0, 0, 0, 0, 768, 11, $rwidth, $rheight);
                 imagejpeg($thumb, 'uploads/' . $user_profile['id'] . '.jpg');
-                Imagecopymerge($dest, $thumb, 42, 152, 0, 0, 768, 768, 100);
+                Imagecopymerge($dest, $thumb, 42, 60, 0, 0, 768, 11, 100);
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
                 imagejpeg($dest, 'uploads/eduaed/result_' . $user_profile['id'] . '.jpg');
