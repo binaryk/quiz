@@ -89,7 +89,6 @@ class QuizController extends Controller
             "text_height"             => $input['text_height'],
             "text_width"              => $input['text_width'],
             "photos"                  => $input['photos'],
-            "color"                   => $input['color'],
         ];
         $this->lang = $input['lang'];
 

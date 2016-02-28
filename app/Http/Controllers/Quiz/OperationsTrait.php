@@ -41,8 +41,9 @@ trait OperationsTrait{
         // Y
         $contents = str_replace("[[HEIGHT]]",$data['height'], $contents);
         // COLOR
-        $color = $this->withoutQ(substr($data['color'], 4, 8));
-        $contents = str_replace("[[COLOR]]",substr($data['color'], 4, 8), $contents);
+        $color = substr($data['color'], 4, 8);
+        $this->object['color'] = $color;
+        $contents = str_replace("[[COLOR]]",$color, $contents);
 
 
         switch($data['option']){
