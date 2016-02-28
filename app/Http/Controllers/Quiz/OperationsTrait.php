@@ -41,7 +41,11 @@ trait OperationsTrait{
         // Y
         $contents = str_replace("[[HEIGHT]]",$data['height'], $contents);
         // COLOR
-        $color = substr($data['color'], 4, 8);
+        if($data['color'] !== "fe9810"){
+            $color = substr($data['color'], 4, 8);
+        }else{
+            $color = "255, 255, 255";
+        }
         $this->object['color'] = $color;
         $contents = str_replace("[[COLOR]]",$color, $contents);
 
