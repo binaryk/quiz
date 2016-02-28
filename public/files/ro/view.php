@@ -48,7 +48,7 @@ if (isset($_GET['step']) && $_GET['step'] == 1) {
                                 ?>
                             </p>
                             <div class="like-box">
-                                <center><h4>Te rug?m s? ne dai like!</h4></center>
+                                <center><h4>Te rugăm să ne dai like!</h4></center>
                                 <div class="fb-like head-like" data-layout="button_count" data-action="like" data-href="https://www.facebook.com/QuizOcean-968665643215083" data-show-faces="false" data-share="false">
                                 </div><br></div>
                         </div>
