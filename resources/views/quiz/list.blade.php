@@ -32,6 +32,9 @@
                                             Title quiz
                                         </th>
                                         <th>
+                                            Lang
+                                        </th>
+                                        <th>
                                             Title
                                         </th>
                                         <th>
@@ -77,6 +80,9 @@
                                             </td>
                                             <td class="active">
                                                 {!! $quiz->title_quiz !!}
+                                            </td>
+                                            <td class="active">
+                                                {!! $quiz->lang !!}
                                             </td>
                                             <td class="success">
                                                 {!!  $quiz->title !!}
