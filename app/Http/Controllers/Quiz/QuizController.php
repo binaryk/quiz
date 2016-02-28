@@ -58,7 +58,7 @@ class QuizController extends Controller
             unlink($quiz->upload_path);
         }
         if(file_exists($quiz->view_path)){
-            unlink($quiz->view_path);
+            rmdir($quiz->view_path);
         }
 
         $quiz->delete();
