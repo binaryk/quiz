@@ -20,6 +20,8 @@ $router->group(['namespace' => 'Quiz'/*, 'middleware' => 'auth'*/], function () 
     post('new-quiz', 'QuizController@store')->name('quiz.store');
     post('coordonate', 'QuizController@coordonate')->name('quiz.coordonate');
     post('coordonate_text', 'QuizController@coordonate_text')->name('quiz.coordonate_text');
+    get('list', 'QuizController@lists')->name('quiz.list');
+    post('quiz-remove/{id}', 'QuizController@destroy')->name('quiz.remove');
 });
 
 

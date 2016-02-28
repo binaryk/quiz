@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\Quiz;
 use App\Http\Controllers\Controller;
+use App\Quiz;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Input;
 
@@ -59,7 +60,7 @@ trait OperationsTrait{
                 $contents = $this->replaceText($data, $contents);
                 break;
         }
-
+        $this->object['controller_path'] = config('destinations.'. $this->lang .'.out1').$title.'.php';
         File::put(config('destinations.'. $this->lang .'.out1').$title.'.php', $contents);
 
     }
@@ -75,12 +76,14 @@ trait OperationsTrait{
             $contents = str_replace("[[FULL_NAME_OPTION]]",'//', $contents);
             $contents = str_replace("[[NAME_OPTION]]",' ', $contents);
             $tmp      = $this->asString($data['text']);
+            //$this->object['text'] = $tmp;
             $text     = str_replace("\$name",' ".$name . " ', $tmp);
             $contents = str_replace("[[NAME]]",$text, $contents);
         }else if(strpos($data['text'], '$fullname') !== false){
             $contents = str_replace("[[NAME_OPTION]]",'//', $contents);
             $contents = str_replace("[[FULL_NAME_OPTION]]",' ', $contents);
             $tmp      = $this->asString($data['text']);
+            //$this->object['text'] = $tmp;
             $text     = str_replace("\$fullname",' ".$fullname . " ', $tmp);
             $contents = str_replace("[[FULL_NAME]]",$text, $contents);
         }else{
@@ -119,8 +122,10 @@ trait OperationsTrait{
         }else{
             $view = $data['title_view'];
         }
+//        $this->object['title_view'] = $view;
         //WOW, '.$name.'! You look so imposing when you are angry. Share this with your friends, let them know
         $contents = str_replace("[[MESSAGE]]",$view, $contents);
+        $this->object['view_path'] = config('destinations.'. $this->lang .'.out2').$title.'.php';
         File::put(config('destinations.'. $this->lang .'.out2').$title.'.php', $contents);
     }
 
@@ -137,11 +142,14 @@ trait OperationsTrait{
             if (! mkdir('/var/www/html/ro/uploads/'. $title, 0777, true)) {
                 die('Failed to create folders...');
             }
+            $this->object['upload_path'] = '/var/www/html/ro/uploads/'. $title;
         }else{
             if (! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
                 die('Failed to create folders...');
             }
+            $this->object['upload_path'] = '/var/www/html/ro/uploads/'. $title;
         }
+
     }
 
     public function makePhotosFolder($data)
@@ -157,6 +165,7 @@ trait OperationsTrait{
     {
         if(array_key_exists('coperta', $data)) {
             $simple_name = $data['coperta']->getClientOriginalName();
+            $this->object['sample_path'] = config('destinations.'. $this->lang .'.sample') . $simple_name;
             $path = $data['coperta']->move(config('destinations.'. $this->lang .'.sample'), $simple_name);
         }
     }
@@ -199,6 +208,12 @@ trait OperationsTrait{
     {
         shell_exec('chown -R www-data:www-data /var/www/html');
         exec('chown -R www-data:www-data /var/www/html');
+    }
+
+    public function insert($data)
+    {
+
+        Quiz::create($data);
     }
 
     public function controls()
