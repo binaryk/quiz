@@ -41,7 +41,7 @@ trait OperationsTrait{
         $contents = str_replace("[[HEIGHT]]",$data['height'], $contents);
         // COLOR
         $color = $this->withoutQ(substr($data['color'], 4, 8));
-        $contents = str_replace("[[COLOR]]",$color, $contents);
+        $contents = str_replace("[[COLOR]]",substr($data['color'], 4, 8), $contents);
 
 
         switch($data['option']){
@@ -116,7 +116,6 @@ trait OperationsTrait{
         if(strpos($data['title_view'], '$name') !== false) {
             $tmp      = $this->asString($data['title_view']);
             $view     = str_replace("\$name","' .\$name . '", $tmp);
-            $view     = str_replace('"',' ', $tmp);
         }else{
             $view = $data['title_view'];
         }
