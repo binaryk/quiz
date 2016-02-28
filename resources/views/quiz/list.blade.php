@@ -65,6 +65,9 @@
                                             Upload path
                                         </th>
                                         <th>
+                                            Images path
+                                        </th>
+                                        <th>
                                             Created at
                                         </th>
                                         <th>
@@ -113,6 +116,9 @@
                                             </td>
                                             <td class="success">
                                                 {!! $quiz->upload_path !!}
+                                            </td>
+                                            <td class="success">
+                                                {!! $quiz->photos_path !!}
                                             </td>
                                             <td class="success">
                                                 {!! $quiz->created_at !!}
