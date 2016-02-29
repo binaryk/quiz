@@ -150,8 +150,10 @@ trait OperationsTrait{
             }
             $this->object['upload_path'] = '/var/www/html/ro/uploads/'. $title;
         }else{
-            if (! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
-                die('Failed to create folders...');
+            if(! file_exists('/var/www/html/uploads/'. $title)){
+                if (! mkdir('/var/www/html/uploads/'. $title, 0777, true)) {
+                    die('Failed to create folders...');
+                }
             }
             $this->object['upload_path'] = '/var/www/html/uploads/'. $title;
         }
