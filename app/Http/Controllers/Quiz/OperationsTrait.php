@@ -49,7 +49,12 @@ trait OperationsTrait{
         }
         $this->object['color'] = $color;
         $contents = str_replace("[[COLOR]]",$color, $contents);
-
+        // ROUND photo
+        if(array_key_exists('round',$data)){
+            $contents = str_replace("[[ROUND]]",' ', $contents);
+        }else{
+            $contents = str_replace("[[ROUND]]",'//', $contents);
+        }
 
         switch($data['option']){
             case "1":

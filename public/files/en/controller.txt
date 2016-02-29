@@ -234,12 +234,10 @@ class [[CLASS_NAME]] extends CI_Controller {
 
                 $thumb = imagecreatetruecolor([[WIDTH]], [[HEIGHT]]);
                 $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
-
                 imagecopyresized($thumb, $source, 0, 0, 0, 0, [[WIDTH]], [[HEIGHT]], $rwidth, $rheight);
                 imagejpeg($thumb, 'uploads/' . $user_profile['id'] . '.jpg');
-
-                $crop = new CircleCrop($thumb);
-                $thumb = $crop->crop()->display();
+                [[ROUND]]$crop = new CircleCrop($thumb);
+                [[ROUND]]$thumb = $crop->crop()->display();
 
                 Imagecopymerge($dest, $thumb, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100);
 //                header('Content-Type: image/png');

@@ -4,6 +4,10 @@
     </div>
     <div class="panel-body">
         <div class="row">
+            <div class="col-md-6">
+                <label for="round" class="control-label">Round photo</label>
+                <input type="checkbox" id="round" name="round">
+            </div>
             <div class="col-md-12">
                 <div class="half-center send-pass">
                     <input id="coordonate" name="coordonate" type="file"/>
