@@ -56,6 +56,10 @@ trait OperationsTrait{
             $contents = str_replace("[[ROUND]]",'//', $contents);
         }
 
+        // RANDOM
+        $contents = str_replace("[[COUNTER]]",'//', count($data['photos']));
+
+
         switch($data['option']){
             case "1":
                 //ambele

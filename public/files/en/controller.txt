@@ -201,7 +201,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                     $fullname = $user_profile['first_name'] . ' ' . $user_profile['last_name'];
                 }
 
-                $per = rand(1, 15);
+                $per = rand(1, [[COUNTER]]);
 
 
 

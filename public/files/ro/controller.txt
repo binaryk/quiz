@@ -210,7 +210,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                                         }
                                 }
 
-               $per = rand(1, 10);
+               $per = rand(1, [[COUNTER]]);
 
 
 
