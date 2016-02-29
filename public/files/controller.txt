@@ -225,12 +225,12 @@ class [[CLASS_NAME]] extends CI_Controller {
              [[NAME_OPTION]]imagettfstroketext($dest, 25, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
-                [[ONLY_TEXT_START]]
+
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
                 $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
                 list($rwidth, $rheight) = getimagesize($filename);
-
+[[ONLY_TEXT_START]]
                 $thumb = imagecreatetruecolor([[WIDTH]], [[HEIGHT]]);
                 $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
                 imagecopyresized($thumb, $source, 0, 0, 0, 0, [[WIDTH]], [[HEIGHT]], $rwidth, $rheight);
@@ -240,6 +240,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                 Imagecopymerge($dest, $thumb, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100);
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
+ [[ONLY_TEXT_STOP]]
                 imagejpeg($dest, 'uploads/[[QUIZ_NAME]]/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
