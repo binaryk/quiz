@@ -57,7 +57,7 @@ trait OperationsTrait{
         }
 
         // RANDOM
-        $contents = str_replace("[[COUNTER]]",'//', count($data['photos']));
+        $contents = str_replace("[[COUNTER]]",'//', count($data['photos'], $contents));
 
 
         switch($data['option']){
