@@ -64,15 +64,22 @@ trait OperationsTrait{
             case "1":
                 //ambele
                 $contents = $this->replaceText($data, $contents);
+                $contents = str_replace("[[ONLY_TEXT_START]]",' ', $contents);
+                $contents = str_replace("[[ONLY_TEXT_STOP]]",' ', $contents);
                 break;
             case "2":
                 //poza
                 $contents = str_replace("[[NAME_OPTION]]",'//', $contents);
                 $contents = str_replace("[[FULL_NAME_OPTION]]",'//', $contents);
+
+                $contents = str_replace("[[ONLY_TEXT_START]]",' ', $contents);
+                $contents = str_replace("[[ONLY_TEXT_STOP]]",' ', $contents);
                 break;
             case "3":
                 //text
                 $contents = $this->replaceText($data, $contents);
+                $contents = str_replace("[[ONLY_TEXT_START]]",'/*', $contents);
+                $contents = str_replace("[[ONLY_TEXT_STOP]]",'*/', $contents);
                 break;
         }
         $this->object['controller_path'] = config('destinations.'. $this->lang .'.out1').$title.'.php';
