@@ -19,7 +19,7 @@ class QuizController extends Controller
     {
       $this->lang = 'en';
       $this->object = [];
-    } 
+    }
 
     public function index()
     {
