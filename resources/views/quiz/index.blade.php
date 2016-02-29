@@ -13,7 +13,7 @@
             {!! Form::open(array('url'=>route('quiz.store'),'method'=>'POST', 'files'=>true)) !!}
                 <div class="panel panel-default">
                     <div class="panel-heading"><i class="fa fa-home"></i> Quiz nou </div>
-
+                    {!! $image !!}
                     <div class="panel-body">
                             @include('quiz.lang')
                             @include('quiz.fields')

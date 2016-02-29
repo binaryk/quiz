@@ -21,10 +21,21 @@ class QuizController extends Controller
       $this->object = [];
     }
 
+    public function imageCreateCorners($sourceImageFile, $radius) {
+        $image = new Imagick();
+        $image->newPseudoImage(100, 100, "magick:rose");
+        $image->setImageFormat("png");
+
+        $image->roundCorners(5,3);
+        $image->writeImage("rounded.png");
+        return $image;
+    }
+
     public function index()
     {
         return view('quiz.index')->with(
-            ['controls' => $this->controls()]
+            ['controls' => $this->controls(),
+            'image' => $this->imageCreateCorners(public_path('tile.png'), 10)]
         );
     }
 
@@ -123,6 +134,30 @@ class QuizController extends Controller
         $this->insert($this->object);
         $this->rules();
         return redirect()->back();
+    }
+
+    public function sync()
+    {
+        $quizes = Quiz::get();
+        $this->shufhome($quizes);
+        $this->shufright($quizes);
+        $this->shufdown($quizes);
+    }
+
+    public function shufhome($quizes = [])
+    {
+
+//        $path = config('')
+    }
+
+    public function shufright($quizes = [])
+    {
+
+    }
+
+    public function shufdown($quizes = [])
+    {
+
     }
 
 

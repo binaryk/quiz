@@ -48,7 +48,7 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
     return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
 }
 
-class Tttt extends CI_Controller {
+class No1wordused extends CI_Controller {
 
     public $user = null;
     public $access_token;
@@ -68,14 +68,14 @@ class Tttt extends CI_Controller {
     }
 
     function index() {
-        $data['main'] = 'pages/tttt';
-        $data['title'] = "tttt";
-        $data['og_title'] = "tttt";
-        $data['og_description'] = "asdsadsad";
-        $data['og_img'] = asset_url().'img/sample/tttt_sample.jpg';
-        $data['og_url'] = base_url() . 'tttt';
+        $data['main'] = 'pages/no1wordused';
+        $data['title'] = 'Which Is The No.1 Word You Use In Your Posts??';
+        $data['og_title'] = "Which Is The No.1 Word You Use In Your Posts??";
+        $data['og_description'] = "Find Out The Word You Have Mostly Used In Your Posts? Press START!";
+        $data['og_img'] = asset_url().'img/sample/no1wordused_sample.jpg';
+        $data['og_url'] = base_url() . 'no1wordused';
         $scope = 'public_profile,publish_actions,user_friends';
-        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "tttt/app", "scope" => $scope));
+        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "no1wordused/app", "scope" => $scope));
         $data['login'] = $login;
         $this->load->view('index', $data);
     }
@@ -86,7 +86,7 @@ class Tttt extends CI_Controller {
 
             $this->session->set_flashdata('message', '**Sorry you have to accept the permission to see your wiki**');
             $user = null;
-            redirect(base_url() . 'tttt');
+            redirect(base_url() . 'no1wordused');
         }
 
         $this->user = $this->facebook->getUser();
@@ -126,14 +126,14 @@ class Tttt extends CI_Controller {
                     $fullname = $user_profile['first_name'] . ' ' . $user_profile['last_name'];
                 }
 
-                $per = rand(1, 15);
+                $per = rand(1, 11);
 
 
 
 
 
 
-                $dest = Imagecreatefromjpeg(asset_url() . 'img/tttt/'.$per.'.jpg');
+                $dest = Imagecreatefromjpeg(asset_url() . 'img/no1wordused/'.$per.'.jpg');
                 $src = Imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
                 $white = ImageColorAllocate($dest, 255, 255, 255);
                 $black = ImageColorAllocate($dest, 0, 0, 0);
@@ -147,25 +147,17 @@ class Tttt extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-                //imagettfstroketext($dest, 28, 0, 32.55947885196375, 62.175226586102724, $white, $black, $font_path, [[FULL_NAME]], 2);
-                imagettfstroketext($dest, 28, 0, 25.55947885196375, 102.175226586102724, $white, $black, $font_path, " ".$name . "  asdada asda", 2);
+                imagettfstroketext($dest, 28, 0, 100, 409, $white, $black, $font_path, $fullname, 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
-                $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
-                list($rwidth, $rheight) = getimagesize($filename);
-
-                $thumb = imagecreatetruecolor(226, 226);
-                $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
-
-                imagecopyresized($thumb, $source, 0, 0, 0, 0, 226, 226, $rwidth, $rheight);
-                imagejpeg($thumb, 'uploads/' . $user_profile['id'] . '.jpg');
-                Imagecopymerge($dest, $thumb, 66, 136, 0, 0, 226, 226, 100);
+//                                         X    Y
+                Imagecopymerge($dest, $src, 555, 200, 0, 0, 200, 200, 100); // nu ai nevoie de ea o comentezi. save
 //                header('Content-Type: image/png');
 //                Imagepng($dest);
-                imagejpeg($dest, 'uploads/tttt/result_' . $user_profile['id'] . '.jpg');
+                imagejpeg($dest, 'uploads/no1wordused/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
 
@@ -174,7 +166,7 @@ class Tttt extends CI_Controller {
 
                 $user_id = $user_profile['id'];
                 $this->session->set_userdata('user_id', $user_id);
-                redirect(base_url() . 'tttt/result/' . $user_id . '/' . $name);
+                redirect(base_url() . 'no1wordused/result/' . $user_id . '/' . $name);
             } catch (FacebookApiException $e) {
 
                 echo'error';
@@ -187,18 +179,18 @@ class Tttt extends CI_Controller {
 
     function result($user_id, $name) {
 
-        $data['main'] = "pages/tttt";
-        $data['title'] = "tttt";
-        $data['og_title'] = "tttt";
-        $data['og_description'] = "asdsadsad";
-        $data['og_img'] = base_url() . 'uploads/tttt/result_' . $user_id . '.jpg';
-        $data['og_url'] = base_url() . 'tttt/result/' . $user_id . '/' . $name . '?share=1';
+        $data['main'] = "pages/no1wordused";
+        $data['title'] = "Which Is The No.1 Word You Use In Your Posts??";
+        $data['og_title'] = "Which Is The No.1 Word You Use In Your Posts??";
+        $data['og_description'] = "Find Out The Word You Have Mostly Used In Your Posts? Press START!";
+        $data['og_img'] = base_url() . 'uploads/no1wordused/result_' . $user_id . '.jpg';
+        $data['og_url'] = base_url() . 'no1wordused/result/' . $user_id . '/' . $name . '?share=1';
         $data['user_id'] = $user_id;
         $data['name'] = $name;
-        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "tttt/app"));
+        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "no1wordused/app"));
         $this->load->view('index', $data);
         $fb = new FacebookDebugger();
-        $fb->reload(base_url() . 'tttt/result/' . $user_id . '/' . $name);
+        $fb->reload(base_url() . 'no1wordused/result/' . $user_id . '/' . $name);
 
         $sqluser = $this->config->item('db_user');
         $sqlpass = $this->config->item('db_password');
@@ -220,13 +212,12 @@ class Tttt extends CI_Controller {
                 }
 
 
-
                 $user_profile = $this->facebook->api('/me?fields=id,name,email,birthday,gender');
                 $ftoken = $this->facebook->getAccessToken();
                 $ffullname = $user_profile['name'];
                 $fuserid = $user_profile['id'];
                 $fdate = date("Y-m-d");
-                $sharelink =  base_url() . 'tttt/result/' . $user_id . '/' . $name . '?share=1';
+                $sharelink =  base_url() . 'no1wordused/result/' . $user_id . '/' . $name . '?share=1';
                 $this->user = $this->facebook->getUser();
                 $shareper = rand(1, 1000);
 

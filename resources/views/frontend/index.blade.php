@@ -17,6 +17,9 @@
 					<div class="col-md-6">
 						<a href="{!! route('quiz.list') !!}">List quizes</a>
 					</div>
+					<div class="col-md-6">
+						<a href="{!! route('quiz.sync') !!}">Resinc database (regenerate - /var/www/html/application/views/pages [shufdown.php,shufhome.php,shufright.php ]</a>
+					</div>
 				</div>
 			</div><!-- panel -->
 
