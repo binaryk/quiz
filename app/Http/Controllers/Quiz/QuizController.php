@@ -19,23 +19,12 @@ class QuizController extends Controller
     {
       $this->lang = 'en';
       $this->object = [];
-    }
-
-    public function imageCreateCorners($sourceImageFile, $radius) {
-        $image = new Imagick();
-        $image->newPseudoImage(100, 100, "magick:rose");
-        $image->setImageFormat("png");
-
-        $image->roundCorners(5,3);
-        $image->writeImage("rounded.png");
-        return $image;
-    }
+    } 
 
     public function index()
     {
         return view('quiz.index')->with(
-            ['controls' => $this->controls(),
-            'image' => $this->imageCreateCorners(public_path('tile.png'), 10)]
+            ['controls' => $this->controls(), ]
         );
     }
 
