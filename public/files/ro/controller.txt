@@ -230,8 +230,30 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $start_y = 395;
                 $font_path = FCPATH . 'font/myriapod.otf';
 
-[[FULL_NAME_OPTION]]imagettfstroketext($dest, 25, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
-             [[NAME_OPTION]]imagettfstroketext($dest, 25, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
+              // get image dimensions
+                $img_width = [[TEXT_WIDTH]];
+                $img_height = [[TEXT_HEIGHT]];
+// find font-size for $txt_width = 80% of $img_width...
+                $font_size = 1;
+                $txt_max_width = intval(0.8 * $img_width);
+                do {
+                    $font_size++;
+                    $p = imagettfbbox($font_size,0,$font_path,[[FULL_NAME]]);
+                [[FULL_NAME_OPTION]]$p = imagettfbbox($font_size,0,$font_path,[[FULL_NAME]]);
+                     [[NAME_OPTION]]$p = imagettfbbox($font_size,0,$font_path,[[NAME]]);
+                    $txt_width=$p[2]-$p[0];
+                    // $txt_height=$p[1]-$p[7]; // just in case you need it
+
+                } while ($txt_width <= $txt_max_width);
+
+// now center the text
+                $y = $img_height * 0.9; // baseline of text at 90% of $img_height
+                $x = ($img_width - $txt_width) / 2;
+
+//                imagettftext($dest, $font_size, 0, $x, $y, $white, $font_path, $text);
+            [[FULL_NAME_OPTION]]imagettfstroketext($dest, $font_size, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
+             [[NAME_OPTION]]imagettfstroketext($dest, $font_size, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
+
 //		imagettfstroketext($dest, 30, 0, $start_x, $start_y, $white, $black, $font_path, $fullname, 0);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
