@@ -23,7 +23,7 @@ $router->group(['namespace' => 'Quiz'/*, 'middleware' => 'auth'*/], function () 
     get('list', 'QuizController@lists')->name('quiz.list');
     post('quiz-remove/{id}', 'QuizController@destroy')->name('quiz.remove');
     post('quiz/sync', 'QuizController@sync')->name('quiz.sync');
-    get('location', 'QuizController@location')->name('quiz.location');
+    get('location/{id?}', 'QuizController@location')->name('quiz.location');
 });
 
 
