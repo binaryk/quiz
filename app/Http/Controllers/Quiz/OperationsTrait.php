@@ -102,7 +102,7 @@ trait OperationsTrait{
             $text = str_replace("\$fullname",' ".$fullname." ', $text);
             $text = str_replace("\$name",' ".$name . " ', $text);
             $text = '"' . $text . '"';
-            $out  = '$font_size = getSize($font_path, '.floatval($data['text_height']).', '.$text.');';
+            $out  = '$font_size = getSize($font_path, '.floatval($data['text_width']).', '.$text.');';
             $out .= 'imagettfstroketext($dest, $font_size, 0, '.(floatval($data["text_x"]) - floatval(5)).','.(floatval($data["text_y"]) + floatval($data["text_height"])).', $white, $black, $font_path, '.$text.', 2);';
             return $out;
         }

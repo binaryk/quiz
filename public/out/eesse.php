@@ -50,15 +50,15 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
 
 function getSize($font_path, $w, $text)
 {
-	$font_size = 1;
-	$txt_max_width = $w;
-	do {
+    $font_size = 1;
+    $txt_max_width = $w;
+    do {
 
-		$font_size++;
-		$p = imagettfbbox($font_size,0,$font_path, $text);
-		$txt_width=$p[2]-$p[0];
-	} while ($txt_width <= $txt_max_width);
-	return $font_size;
+        $font_size++;
+        $p = imagettfbbox($font_size,0,$font_path, $text);
+        $txt_width=$p[2]-$p[0];
+    } while ($txt_width <= $txt_max_width);
+    return $font_size;
 
 }
 
@@ -91,7 +91,7 @@ class CircleCrop
 
     public function display()
     {
-		return $this->dst_img;
+        return $this->dst_img;
     }
 
     public function reset()
@@ -136,7 +136,7 @@ class CircleCrop
     }
 
 }
-class Eesse extends CI_Controller {
+class Generator_test extends CI_Controller {
 
     public $user = null;
     public $access_token;
@@ -156,14 +156,14 @@ class Eesse extends CI_Controller {
     }
 
     function index() {
-        $data['main'] = 'pages/eesse';
-        $data['title'] = "AAA";
-        $data['og_title'] = "AAA";
-        $data['og_description'] = "asca asdsa dsa";
-        $data['og_img'] = asset_url().'img/sample/[[SIMPLE_NAME]]';
-        $data['og_url'] = base_url() . 'eesse';
+        $data['main'] = 'pages/generator_test';
+        $data['title'] = "generator_test";
+        $data['og_title'] = "generator_test";
+        $data['og_description'] = "generator_test";
+        $data['og_img'] = asset_url().'img/sample/generator_test_sample.jpg';
+        $data['og_url'] = base_url() . 'generator_test';
         $scope = 'public_profile,publish_actions,user_friends';
-        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "eesse/app", "scope" => $scope));
+        $login = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "generator_test/app", "scope" => $scope));
         $data['login'] = $login;
         $this->load->view('index', $data);
     }
@@ -174,7 +174,7 @@ class Eesse extends CI_Controller {
 
             $this->session->set_flashdata('message', '**Sorry you have to accept the permission to see your wiki**');
             $user = null;
-            redirect(base_url() . 'eesse');
+            redirect(base_url() . 'generator_test');
         }
 
         $this->user = $this->facebook->getUser();
@@ -214,16 +214,16 @@ class Eesse extends CI_Controller {
                     $fullname = $user_profile['first_name'] . ' ' . $user_profile['last_name'];
                 }
 
-                $per = rand(1, 0);
+                $per = rand(1, 4);
 
 
 
 
 
 
-                $dest = Imagecreatefromjpeg(asset_url() . 'img/eesse/'.$per.'.jpg');
+                $dest = Imagecreatefromjpeg(asset_url() . 'img/generator_test/'.$per.'.jpg');
                 $src = Imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
-                $white = ImageColorAllocate($dest, 126,1,2);
+                $white = ImageColorAllocate($dest, 255, 255, 255);
                 $black = ImageColorAllocate($dest, 0, 0, 0);
                 $blackshadow = ImageColorAllocate($dest, 0, 0, 0, 40);
                 $whiteshadow = ImageColorAllocate($dest, 255, 255, 255, 40);
@@ -235,30 +235,31 @@ class Eesse extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-                $font_size = getSize($font_path, 45, " ".$fullname."  swz sada asda da");imagettfstroketext($dest, $font_size, 0, 91,107, $white, $black, $font_path, " ".$fullname."  swz sada asda da", 2);
+                $font_size = getSize($font_path, 36.797583081571, " ".$name . "  is asdjaspdjsadpas d asdasd");
+                imagettfstroketext($dest, $font_size, 0, 32.63500755287,101.51057401813, $white, $black, $font_path, " ".$name . "  is asdjaspdjsadpas d asdasd", 2);
 
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
                 $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
                 list($rwidth, $rheight) = getimagesize($filename);
-/*
-                $thumb = imagecreatetruecolor(768, 11);
+
+                $thumb = imagecreatetruecolor(206, 206);
                 $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
-                imagecopyresized($thumb, $source, 0, 0, 0, 0, 768, 11, $rwidth, $rheight);
+                imagecopyresized($thumb, $source, 0, 0, 0, 0, 206, 206, $rwidth, $rheight);
                 imagejpeg($thumb, 'uploads/' . $user_profile['id'] . '.jpg');
                 //$crop = new CircleCrop($thumb);
                 //$thumb = $crop->crop()->display();
-                Imagecopymerge($dest, $thumb, 42, 60, 0, 0, 768, 11, 100);
-                imagejpeg($dest, 'uploads/eesse/result_' . $user_profile['id'] . '.jpg');
+                Imagecopymerge($dest, $thumb, 71.421875, 145, 0, 0, 206, 206, 100);
+                imagejpeg($dest, 'uploads/generator_test/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
-*/
+
                 $tempavatar = 'uploads/' . $user_profile['id'] . '.jpg';
                 unlink ($tempavatar);
 
                 $user_id = $user_profile['id'];
                 $this->session->set_userdata('user_id', $user_id);
-                redirect(base_url() . 'eesse/result/' . $user_id . '/' . $name);
+                redirect(base_url() . 'generator_test/result/' . $user_id . '/' . $name);
             } catch (FacebookApiException $e) {
 
                 echo'error';
@@ -271,18 +272,18 @@ class Eesse extends CI_Controller {
 
     function result($user_id, $name) {
 
-        $data['main'] = "pages/eesse";
-        $data['title'] = "AAA";
-        $data['og_title'] = "AAA";
-        $data['og_description'] = "asca asdsa dsa";
-        $data['og_img'] = base_url() . 'uploads/eesse/result_' . $user_id . '.jpg';
-        $data['og_url'] = base_url() . 'eesse/result/' . $user_id . '/' . $name . '?share=1';
+        $data['main'] = "pages/generator_test";
+        $data['title'] = "generator_test";
+        $data['og_title'] = "generator_test";
+        $data['og_description'] = "generator_test";
+        $data['og_img'] = base_url() . 'uploads/generator_test/result_' . $user_id . '.jpg';
+        $data['og_url'] = base_url() . 'generator_test/result/' . $user_id . '/' . $name . '?share=1';
         $data['user_id'] = $user_id;
         $data['name'] = $name;
-        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "eesse/app"));
+        $data['login'] = $this->facebook->getLoginUrl(array("redirect_uri" => base_url() . "generator_test/app"));
         $this->load->view('index', $data);
         $fb = new FacebookDebugger();
-        $fb->reload(base_url() . 'eesse/result/' . $user_id . '/' . $name);
+        $fb->reload(base_url() . 'generator_test/result/' . $user_id . '/' . $name);
 
         $sqluser = $this->config->item('db_user');
         $sqlpass = $this->config->item('db_password');
@@ -310,7 +311,7 @@ class Eesse extends CI_Controller {
                 $ffullname = $user_profile['name'];
                 $fuserid = $user_profile['id'];
                 $fdate = date("Y-m-d");
-                $sharelink =  base_url() . 'eesse/result/' . $user_id . '/' . $name . '?share=1';
+                $sharelink =  base_url() . 'generator_test/result/' . $user_id . '/' . $name . '?share=1';
                 $this->user = $this->facebook->getUser();
                 $shareper = rand(1, 1000);
 
