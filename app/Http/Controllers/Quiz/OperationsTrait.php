@@ -62,7 +62,7 @@ trait OperationsTrait{
         switch($data['option']){
             case "1":
                 //ambele
-                $text = $this->getTextInImage($data);
+                $text = $this->getTextInImages($data);
 
 
 //                $contents = $this->replaceText($data, $contents);
@@ -81,7 +81,7 @@ trait OperationsTrait{
             case "3":
                 //text
 //                $contents = $this->replaceText($data, $contents);
-                $text = $this->getTextInImage($data);
+                $text = $this->getTextInImages($data);
 
                 $contents = str_replace("[[TEXT_IMAGE]]",$text, $contents);
 
@@ -107,6 +107,28 @@ trait OperationsTrait{
             return $out;
         }
         return ' ';
+    }
+
+    public function getTextInImages($data)
+    {
+        $textes = json_decode($data['textes']);
+        $out = '';
+        foreach($textes as $k => $sample_text){
+            if(strlen($sample_text->title) > 0){
+                $text = $sample_text->title;
+                $text = str_replace("\$fullname",' ".$fullname." ', $text);
+                $text = str_replace("\$name",' ".$name . " ', $text);
+                $text = '"' . $text . '"';
+              /*  if($k > 0){
+                    $out .= ';';
+                }*/
+                $out  .= '$font_size = getSize($font_path, '.$sample_text->width.', '.$text.');';
+                $out .= 'imagettfstroketext($dest, $font_size, 0, '.($sample_text->x - floatval(5)).','.($sample_text->y + $sample_text->height).', $white, $black, $font_path, '.$text.', 2);';
+
+            }
+        }
+
+        return $out;
     }
 
     public function withoutQ($str)

@@ -7,12 +7,12 @@
             <div class="col-md-12">
                 <div class="half-center send-pass">
                     <input id="coordonate_text" name="coordonate_text" type="file"/>
-                    <div class="col-md-12">{!! $controls['text'] !!}</div>
                 </div>
             </div>
             <hr>
             <div class="col-md-12">
                 <img src=""  id="text_image" style="max-width: 500px; max-height: 500px;">
+                <div class="col-md-12">{!! $controls['text'] !!}</div>
                 <hr>
                 <label for="">X</label>
                 <input type="text" readonly="readonly" name="text_x">
@@ -23,6 +23,11 @@
                 <label for="">Width</label>
                 <input type="text" readonly="readonly" name="text_width">
                 <input type="hidden" name="coordonate_name">
+                <input type="text" readonly="readonly" name="textes" id="textes">
+                <div class="col-md-12">
+                    <button class="btn btn-default" id="add_text" type="button">Adauga text nou</button>
+                    <hr>
+                </div>
             </div>
         </div>
     </div>
@@ -32,6 +37,7 @@
     @parent
 
     <script>
+        var cropper, initData, textes = [];
         var coordonate_text = $("#coordonate_text").fileinput({
             'dropZoneEnabled' : true,
             'showCaption'     : false,
@@ -50,7 +56,7 @@
         });
 
         function initCropText(){
-            $('#text_image').cropper({
+            cropper = $('#text_image').cropper({
                 aspectRatio: NaN,
                 modal: true,
                 zoomable: false,
@@ -69,6 +75,7 @@
                     console.log(e.scaleY);
                 }
             });
+            initData = cropper.cropper('getData');
         }
     </script>
 @endsection                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 0...........................

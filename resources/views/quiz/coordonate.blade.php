@@ -7,16 +7,22 @@
             <div class="col-md-6">
                 <label for="round" class="control-label">Round photo</label>
                 <input type="checkbox" id="round" name="round">
+                <hr>
             </div>
             <div class="col-md-12">
+                <div class="half-center send-pass">
+                    <img src=""  id="image" style="max-width: 500px; max-height: 500px;">
+                    <hr>
+                </div>
+            </div>
+            <div class="col-md-12" style="margin-bottom: 30px;">
                 <div class="half-center send-pass">
                     <input id="coordonate" name="coordonate" type="file"/>
                 </div>
             </div>
+            <br>
             <hr>
             <div class="col-md-12">
-                <img src=""  id="image" style="max-width: 500px; max-height: 500px;">
-                <hr>
                 <label for="">X</label>
                 <input type="text" readonly="readonly" name="x">
                 <label for="">Y</label>

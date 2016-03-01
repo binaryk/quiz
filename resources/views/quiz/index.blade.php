@@ -61,3 +61,4 @@
         });
     </script>
 @stop
+@include('quiz.multiple')
