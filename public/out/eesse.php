@@ -235,8 +235,7 @@ class Eesse extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-                $font_size = getSize($font_path, 45, " ".$fullname."  swz sada asda da");
-                imagettfstroketext($dest, $font_size, 0, 91,107, $white, $black, $font_path, " ".$fullname."  swz sada asda da", 2);
+                $font_size = getSize($font_path, 45, " ".$fullname."  swz sada asda da");imagettfstroketext($dest, $font_size, 0, 91,107, $white, $black, $font_path, " ".$fullname."  swz sada asda da", 2);
 
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);

@@ -74,7 +74,7 @@ trait OperationsTrait{
                 //poza
                 $contents = str_replace("[[NAME_OPTION]]",'//', $contents);
                 $contents = str_replace("[[FULL_NAME_OPTION]]",'//', $contents);
-
+                $contents = str_replace("[[TEXT_IMAGE]]",' ', $contents);
                 $contents = str_replace("[[ONLY_TEXT_START]]",' ', $contents);
                 $contents = str_replace("[[ONLY_TEXT_STOP]]",' ', $contents);
                 break;
