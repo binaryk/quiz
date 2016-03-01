@@ -124,7 +124,9 @@ class QuizController extends Controller
     {
 
         $input = Input::all();
-        if(Quiz::where('title_quiz', $input['title_quiz'])->where('lang',$input['lang'])->first()){
+
+
+        if(env('APP_ENV') != 'local' && Quiz::where('title_quiz', $input['title_quiz'])->where('lang',$input['lang'])->first()){
             return redirect()->back()->withInput();
         }
         $this->object = [

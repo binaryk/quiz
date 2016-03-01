@@ -59,11 +59,14 @@ trait OperationsTrait{
         // RANDOM
         $contents = str_replace("[[COUNTER]]",count($data['photos']), $contents);
 
-
         switch($data['option']){
             case "1":
                 //ambele
-                $contents = $this->replaceText($data, $contents);
+                $text = $this->getTextInImage($data);
+
+
+//                $contents = $this->replaceText($data, $contents);
+                $contents = str_replace("[[TEXT_IMAGE]]",$text, $contents);
                 $contents = str_replace("[[ONLY_TEXT_START]]",' ', $contents);
                 $contents = str_replace("[[ONLY_TEXT_STOP]]",' ', $contents);
                 break;
@@ -77,7 +80,11 @@ trait OperationsTrait{
                 break;
             case "3":
                 //text
-                $contents = $this->replaceText($data, $contents);
+//                $contents = $this->replaceText($data, $contents);
+                $text = $this->getTextInImage($data);
+
+                $contents = str_replace("[[TEXT_IMAGE]]",$text, $contents);
+
                 $contents = str_replace("[[ONLY_TEXT_START]]",'/*', $contents);
                 $contents = str_replace("[[ONLY_TEXT_STOP]]",'*/', $contents);
                 break;
@@ -85,6 +92,21 @@ trait OperationsTrait{
         $this->object['controller_path'] = config('destinations.'. $this->lang .'.out1').$title.'.php';
         File::put(config('destinations.'. $this->lang .'.out1').$title.'.php', $contents);
 
+    }
+
+    public function getTextInImage($data)
+    {
+
+        if(strlen($data['text']) > 0){
+            $text = $data['text'];
+            $text = str_replace("\$fullname",' ".$fullname." ', $text);
+            $text = str_replace("\$name",' ".$name . " ', $text);
+            $text = '"' . $text . '"';
+            $out  = '$font_size = getSize($font_path, '.floatval($data['text_height']).', '.$text.');';
+            $out .= 'imagettfstroketext($dest, $font_size, 0, '.(floatval($data["text_x"]) - floatval(5)).','.(floatval($data["text_y"]) + floatval($data["text_height"])).', $white, $black, $font_path, '.$text.', 2);';
+            return $out;
+        }
+        return ' ';
     }
 
     public function withoutQ($str)

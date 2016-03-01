@@ -242,12 +242,8 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $start_y = 395;
                 $font_path = FCPATH . 'font/myriapod.otf';
 
-            [[FULL_NAME_OPTION]]$font_size = getSize($font_path, [[TEXT_WIDTH]], [[FULL_NAME]]);
-            [[NAME_OPTION]]$font_size = getSize($font_path, [[TEXT_WIDTH]], [[NAME]]);
-
-            [[FULL_NAME_OPTION]]imagettfstroketext($dest, $font_size, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
-             [[NAME_OPTION]]imagettfstroketext($dest, $font_size, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
-                [[ONLY_TEXT_START]]
+             [[TEXT_IMAGE]]
+[[ONLY_TEXT_START]]
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
                 $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
@@ -260,11 +256,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                 [[ROUND]]$crop = new CircleCrop($thumb);
                 [[ROUND]]$thumb = $crop->crop()->display();
                 Imagecopymerge($dest, $thumb, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100);
-
-//                Imagecopymerge($dest, $src, 110, 50, 0, 0, 220, 220, 100); //have to play with these numbers for it to work for you, etc.
-//                header('Content-Type: image/png');
-//                Imagepng($dest);
-                [[ONLY_TEXT_STOP]]
+[[ONLY_TEXT_STOP]]
                 imagejpeg($dest, 'uploads/[[QUIZ_NAME]]/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
