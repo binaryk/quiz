@@ -189,6 +189,12 @@ class QuizController extends Controller
     }
 
 
+    public function location($ip = null)
+    {
+        return 'ro';
+    }
+
+
 
 
 
