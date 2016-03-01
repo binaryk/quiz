@@ -114,8 +114,8 @@ trait OperationsTrait{
         }
         $contents = str_replace("[[TEXT_X]]",floatval($data['text_x']) - floatval(5), $contents);
         $contents = str_replace("[[TEXT_Y]]",floatval($data['text_y']) + floatval($data['text_height']), $contents);
-        $contents = str_replace("[[TEXT_WIDTH]]",floatval($data['text_y']) + floatval($data['text_width']), $contents);
-        $contents = str_replace("[[TEXT_HEIGHT]]",floatval($data['text_y']) + floatval($data['text_height']), $contents);
+        $contents = str_replace("[[TEXT_WIDTH]]",floatval($data['text_width']), $contents);
+        $contents = str_replace("[[TEXT_HEIGHT]]",floatval($data['text_height']), $contents);
         return $contents;
     }
 
