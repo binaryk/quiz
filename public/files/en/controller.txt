@@ -47,7 +47,19 @@ function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strok
 
     return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
 }
+function getSize($font_path, $w, $text)
+{
+	$font_size = 1;
+	$txt_max_width = $w;
+	do {
 
+		$font_size++;
+		$p = imagettfbbox($font_size,0,$font_path, $text);
+		$txt_width=$p[2]-$p[0];
+	} while ($txt_width <= $txt_max_width);
+	return $font_size;
+
+}
 class CircleCrop
 {
 
@@ -222,8 +234,11 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $font_path = FCPATH . 'font/arialblack.ttf';
 
 
-            [[FULL_NAME_OPTION]]imagettfstroketext($dest, 25, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
-             [[NAME_OPTION]]imagettfstroketext($dest, 25, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
+            [[FULL_NAME_OPTION]]$font_size = getSize($font_path, 291, [[FULL_NAME]]);
+            [[NAME_OPTION]]$font_size = getSize($font_path, [[TEXT_WIDTH]], [[NAME]]);
+
+            [[FULL_NAME_OPTION]]imagettfstroketext($dest, $font_size, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
+             [[NAME_OPTION]]imagettfstroketext($dest, $font_size, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[NAME]], 2);
 //                imagettfstroketext($dest, 45, 0, 505, 230, $white, $black, $font_path, $per, 2);
 
 

@@ -21,10 +21,45 @@ class QuizController extends Controller
       $this->object = [];
     }
 
+    public function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strokecolor, $fontfile, $text, $px) {
+
+        for($c1 = ($x-abs($px)); $c1 <= ($x+abs($px)); $c1++)
+            for($c2 = ($y-abs($px)); $c2 <= ($y+abs($px)); $c2++)
+                $bg = imagettftext($image, $size, $angle, $c1, $c2, $strokecolor, $fontfile, $text);
+
+        return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
+    }
+
+    public function getSize($font_path, $w, $text)
+    {
+        $font_size = 1;
+        $txt_max_width = $w;
+        do {
+
+            $font_size++;
+            $p = imagettfbbox($font_size,0,$font_path, $text);
+            $txt_width=$p[2]-$p[0];
+        } while ($txt_width <= $txt_max_width);
+        return $font_size;
+
+    }
+
     public function index()
     {
+
+//        $dest = imagecreatefromjpeg(public_path('uploads/img.jpg'));
+//        $white = imageColorAllocate($dest, 215,123,0);
+//        $font_path = public_path() . '/font/arialblack.ttf';
+//        $text =  "Text sample eduard are mere." ;
+//        $font_size = $this->getSize($font_path, 120, $text);
+//        $black = ImageColorAllocate($dest, 0, 0, 0);
+//        $this->imagettfstroketext($dest, $font_size, 0, 150, 500, $white, $black, $font_path, $text, 2);
+//
+//        Imagealphablending($dest, false);
+//        Imagesavealpha($dest, true);
+//        imagejpeg($dest, public_path() . '/uploads/test.jpg');
         return view('quiz.index')->with(
-            ['controls' => $this->controls(), ]
+            ['controls' => $this->controls(),]
         );
     }
 
