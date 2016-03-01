@@ -242,7 +242,7 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $start_y = 395;
                 $font_path = FCPATH . 'font/myriapod.otf';
 
-            [[FULL_NAME_OPTION]]$font_size = getSize($font_path, 291, [[FULL_NAME]]);
+            [[FULL_NAME_OPTION]]$font_size = getSize($font_path, [[TEXT_WIDTH]], [[FULL_NAME]]);
             [[NAME_OPTION]]$font_size = getSize($font_path, [[TEXT_WIDTH]], [[NAME]]);
 
             [[FULL_NAME_OPTION]]imagettfstroketext($dest, $font_size, 0, [[TEXT_X]], [[TEXT_Y]], $white, $black, $font_path, [[FULL_NAME]], 2);
