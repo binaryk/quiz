@@ -205,7 +205,7 @@ class QuizController extends Controller
 
         }
         $contents       = str_replace("[[ADD]]",$out, $contents);
-        $contents_ro    = str_replace("[[ADD]]",$out, $contents_ro);
+        $contents_ro    = str_replace("[[ADD]]",$out_ro, $contents_ro);
         File::put(config('destinations.en.shufhome_out'), $contents);
         File::put(config('destinations.ro.shufhome_out'), $contents_ro);
         if(env('APP_ENV') != 'local'){
@@ -239,7 +239,7 @@ class QuizController extends Controller
             }
         }
         $contents       = str_replace("[[ADD]]",$out, $contents);
-        $contents_ro    = str_replace("[[ADD]]",$out, $contents_ro);
+        $contents_ro    = str_replace("[[ADD]]",$out_ro, $contents_ro);
         File::put(config('destinations.en.shufright_out'), $contents);
         File::put(config('destinations.ro.shufright_out'), $contents_ro);
         if(env('APP_ENV') != 'local'){
@@ -271,7 +271,7 @@ class QuizController extends Controller
             }
         }
         $contents       = str_replace("[[ADD]]",$out, $contents);
-        $contents_ro    = str_replace("[[ADD]]",$out, $contents_ro);
+        $contents_ro    = str_replace("[[ADD]]",$out_ro, $contents_ro);
         File::put(config('destinations.en.shufdown_out'), $contents);
         File::put(config('destinations.ro.shufdown_out'), $contents_ro);
         if(env('APP_ENV') != 'local'){
