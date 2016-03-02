@@ -26,11 +26,11 @@ $out1 = [
         'photos_dest'   => public_path() . DIRECTORY_SEPARATOR . 'out'.DIRECTORY_SEPARATOR.'assets'.DIRECTORY_SEPARATOR,////var/www/html/assets/img/catlook
         'local_coords'  => public_path() . DIRECTORY_SEPARATOR . 'out' . DIRECTORY_SEPARATOR . 'coords' . DIRECTORY_SEPARATOR,
         'shufhome_in'      => public_path() . DIRECTORY_SEPARATOR . 'files/ro/shufhome.php',
-        'shufhome_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/shufhome.php',
+        'shufhome_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/ro/shufhome.php',
         'shufdown_in'      => public_path() . DIRECTORY_SEPARATOR . 'files/ro/shufdown.php',
-        'shufdown_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/shufdown.php',
+        'shufdown_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/ro/shufdown.php',
         'shufright_in'      => public_path() . DIRECTORY_SEPARATOR . 'files/ro/shufright.php',
-        'shufright_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/shufhome.php',
+        'shufright_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/ro/shufright.php',
     ],
 ];
 
@@ -63,11 +63,11 @@ $out2 = [
         'local_coords' => public_path() . DIRECTORY_SEPARATOR . 'out' . DIRECTORY_SEPARATOR . 'coords' . DIRECTORY_SEPARATOR,
         'menu' =>        '/var/www/html/ro/application/views/pages/',
         'shufhome_in'      => public_path() . DIRECTORY_SEPARATOR . 'files/ro/shufhome.php',
-        'shufhome_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/shufhome.php',
+        'shufhome_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/ro/shufhome.php',
         'shufdown_in'      => public_path() . DIRECTORY_SEPARATOR . 'files/ro/shufdown.php',
-        'shufdown_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/shufdown.php',
+        'shufdown_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/ro/shufdown.php',
         'shufright_in'      => public_path() . DIRECTORY_SEPARATOR . 'files/ro/shufright.php',
-        'shufright_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/shufhome.php',
+        'shufright_out'      => public_path() . DIRECTORY_SEPARATOR . 'out/ro/shufright.php',
     ],
 
 ];
