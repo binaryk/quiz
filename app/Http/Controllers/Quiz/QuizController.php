@@ -185,7 +185,7 @@ class QuizController extends Controller
             $out .= '$links[] = ';
             $out .= '\'<div class="col-md-4">';
             $out .= '<a href="\'.base_url().\''.$quiz->title.'" class="sidebar-quiz">';
-            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title.'_sample.jpg" alt=""/>';
+            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
             $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
             $out .= '<span class="clearfix"></span>';
             $out .= '</a></div>\';';
@@ -204,8 +204,8 @@ class QuizController extends Controller
         $out = '';
         foreach($quizes as $k => $quiz){
             $out .= '$links[] = ';
-            $out .= '\'<a href="\'.base_url().\''.$quiz->title.'" class="sidebar-quiz">';
-            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title.'_sample.jpg" alt=""/>';
+            $out .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
             $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
             $out .= '<span class="clearfix"></span> </a>\';';
         }
@@ -223,8 +223,8 @@ class QuizController extends Controller
         $out = '';
         foreach($quizes as $k => $quiz){
             $out .= '$links2[] = ';
-            $out .= '\'<a href="\'.base_url().\''.$quiz->title.'" class="sidebar-quiz">';
-            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title.'_sample.jpg" alt=""/>';
+            $out .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
             $out .= '<span>'.$quiz->ogtitle.'</span></a>\';';
         }
         $contents = str_replace("[[ADD]]",$out, $contents);
