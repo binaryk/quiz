@@ -277,7 +277,7 @@ class QuizController extends Controller
         if(env('APP_ENV') != 'local'){
             File::put($path, $contents);
             File::put($path_ro, $contents_ro);
-        } 
+        }
     }
 
 
