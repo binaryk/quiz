@@ -22,7 +22,7 @@ $router->group(['namespace' => 'Quiz'/*, 'middleware' => 'auth'*/], function () 
     post('coordonate_text', 'QuizController@coordonate_text')->name('quiz.coordonate_text');
     get('list', 'QuizController@lists')->name('quiz.list');
     post('quiz-remove/{id}', 'QuizController@destroy')->name('quiz.remove');
-    post('quiz/sync', 'QuizController@sync')->name('quiz.sync');
+    get('quiz/sync', 'QuizController@sync')->name('quiz.sync');
     get('location/{id?}', 'QuizController@location')->name('quiz.location');
 });
 

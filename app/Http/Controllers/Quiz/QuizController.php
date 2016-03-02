@@ -170,22 +170,65 @@ class QuizController extends Controller
         $this->shufhome($quizes);
         $this->shufright($quizes);
         $this->shufdown($quizes);
+        return redirect()->to('/');
     }
 
     public function shufhome($quizes = [])
     {
-
-//        $path = config('')
+        $contents = File::get(config('destinations.'. $this->lang .'.shufhome_in'));
+        $path = '/var/www/html/application/views/pages/shufhome.php';
+        $out = '';
+        foreach($quizes as $k => $quiz){
+            $out .= '$links[] = ';
+            $out .= '\'<div class="col-md-4">';
+            $out .= '<a href="\'.base_url().\''.$quiz->title.'" class="sidebar-quiz">';
+            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title.'_sample.jpg" alt=""/>';
+            $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
+            $out .= '<span class="clearfix"></span>';
+            $out .= '</a></div>\';';
+        }
+        $contents = str_replace("[[ADD]]",$out, $contents);
+        File::put(config('destinations.'. $this->lang .'.shufhome_out'), $contents);
+        if(env('APP_ENV') != 'local'){
+            File::put($path, $contents);
+        }
     }
 
     public function shufright($quizes = [])
     {
-
+        $contents = File::get(config('destinations.'. $this->lang .'.shufright_in'));
+        $path = '/var/www/html/application/views/pages/shufright.php';
+        $out = '';
+        foreach($quizes as $k => $quiz){
+            $out .= '$links[] = ';
+            $out .= '\'<a href="\'.base_url().\''.$quiz->title.'" class="sidebar-quiz">';
+            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title.'_sample.jpg" alt=""/>';
+            $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
+            $out .= '<span class="clearfix"></span> </a>\';';
+        }
+        $contents = str_replace("[[ADD]]",$out, $contents);
+        File::put(config('destinations.'. $this->lang .'.shufright_out'), $contents);
+        if(env('APP_ENV') != 'local'){
+            File::put($path, $contents);
+        }
     }
 
     public function shufdown($quizes = [])
     {
-
+        $contents = File::get(config('destinations.'. $this->lang .'.shufdown_in'));
+        $path = '/var/www/html/application/views/pages/shufdown.php';
+        $out = '';
+        foreach($quizes as $k => $quiz){
+            $out .= '$links2[] = ';
+            $out .= '\'<a href="\'.base_url().\''.$quiz->title.'" class="sidebar-quiz">';
+            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title.'_sample.jpg" alt=""/>';
+            $out .= '<span>'.$quiz->ogtitle.'</span></a>\';';
+        }
+        $contents = str_replace("[[ADD]]",$out, $contents);
+        File::put(config('destinations.'. $this->lang .'.shufdown_out'), $contents);
+        if(env('APP_ENV') != 'local'){
+            File::put($path, $contents);
+        }
     }
 
 
