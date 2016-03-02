@@ -177,61 +177,107 @@ class QuizController extends Controller
     {
 
         $contents = File::get(config('destinations.en.shufhome_in'));
+        $contents_ro = File::get(config('destinations.ro.shufhome_in'));
         $path = '/var/www/html/application/views/pages/shufhome.php';
+        $path_ro = '/var/www/html/ro/application/views/pages/shufhome.php';
 
 
         $out = '';
+        $out_ro = '';
         foreach($quizes as $k => $quiz){
-            $out .= '$links[] = ';
-            $out .= '\'<div class="col-md-4">';
-            $out .= '<a href="\'.base_url().\''.$quiz->title.'" class="sidebar-quiz">';
-            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
-            $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
-            $out .= '<span class="clearfix"></span>';
-            $out .= '</a></div>\';';
+            if($quiz->lang == 'en'){
+                $out .= '$links[] = ';
+                $out .= '\'<div class="col-md-4">';
+                $out .= '<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+                $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
+                $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
+                $out .= '<span class="clearfix"></span>';
+                $out .= '</a></div>\';';
+            }else{
+                $out_ro .= '$links[] = ';
+                $out_ro .= '\'<div class="col-md-4">';
+                $out_ro .= '<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+                $out_ro .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
+                $out_ro .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
+                $out_ro .= '<span class="clearfix"></span>';
+                $out_ro .= '</a></div>\';';
+            }
+
         }
-        $contents = str_replace("[[ADD]]",$out, $contents);
+        $contents       = str_replace("[[ADD]]",$out, $contents);
+        $contents_ro    = str_replace("[[ADD]]",$out, $contents_ro);
         File::put(config('destinations.en.shufhome_out'), $contents);
+        File::put(config('destinations.ro.shufhome_out'), $contents_ro);
         if(env('APP_ENV') != 'local'){
             File::put($path, $contents);
+            File::put($path_ro, $contents_ro);
         }
     }
 
     public function shufright($quizes = [])
     {
         $contents = File::get(config('destinations.en.shufright_in'));
+        $contents_ro = File::get(config('destinations.ro.shufright_in'));
         $path = '/var/www/html/application/views/pages/shufright.php';
+        $path_ro = '/var/www/html/ro/application/views/pages/shufright.php';
         $out = '';
+        $out_ro = '';
         foreach($quizes as $k => $quiz){
-            $out .= '$links[] = ';
-            $out .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
-            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
-            $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
-            $out .= '<span class="clearfix"></span> </a>\';';
+            if($quiz->lang == 'en'){
+                $out .= '$links[] = ';
+                $out .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+                $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
+                $out .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
+                $out .= '<span class="clearfix"></span> </a>\';';
+            }else{
+                $out_ro .= '$links[] = ';
+                $out_ro .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+                $out_ro .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
+                $out_ro .= '<h5><strong>'.$quiz->ogtitle.'</strong></h5>';
+                $out_ro .= '<span class="clearfix"></span> </a>\';';
+
+            }
         }
-        $contents = str_replace("[[ADD]]",$out, $contents);
+        $contents       = str_replace("[[ADD]]",$out, $contents);
+        $contents_ro    = str_replace("[[ADD]]",$out, $contents_ro);
         File::put(config('destinations.en.shufright_out'), $contents);
+        File::put(config('destinations.ro.shufright_out'), $contents_ro);
         if(env('APP_ENV') != 'local'){
             File::put($path, $contents);
+            File::put($path_ro, $contents_ro);
         }
     }
 
     public function shufdown($quizes = [])
     {
         $contents = File::get(config('destinations.en.shufdown_in'));
+        $contents_ro = File::get(config('destinations.ro.shufdown_in'));
         $path = '/var/www/html/application/views/pages/shufdown.php';
+        $path_ro = '/var/www/html/ro/application/views/pages/shufdown.php';
         $out = '';
+        $out_ro = '';
         foreach($quizes as $k => $quiz){
-            $out .= '$links2[] = ';
-            $out .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
-            $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
-            $out .= '<span>'.$quiz->ogtitle.'</span></a>\';';
+            if($quiz->lang == 'en'){
+                $out .= '$links2[] = ';
+                $out .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+                $out .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
+                $out .= '<span>'.$quiz->ogtitle.'</span></a>\';';
+            }else{
+                $out_ro .= '$links2[] = ';
+                $out_ro .= '\'<a href="\'.base_url().\''.$quiz->title_quiz.'" class="sidebar-quiz">';
+                $out_ro .= '<img src="\'.asset_url().\'img/sample/'.$quiz->title_quiz.'_sample.jpg" alt=""/>';
+                $out_ro .= '<span>'.$quiz->ogtitle.'</span></a>\';';
+
+            }
         }
-        $contents = str_replace("[[ADD]]",$out, $contents);
+        $contents       = str_replace("[[ADD]]",$out, $contents);
+        $contents_ro    = str_replace("[[ADD]]",$out, $contents_ro);
         File::put(config('destinations.en.shufdown_out'), $contents);
+        File::put(config('destinations.ro.shufdown_out'), $contents_ro);
         if(env('APP_ENV') != 'local'){
             File::put($path, $contents);
-        }
+            File::put($path_ro, $contents_ro);
+        } 
     }
 
 
