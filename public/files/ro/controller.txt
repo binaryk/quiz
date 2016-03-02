@@ -243,12 +243,12 @@ class [[CLASS_NAME]] extends CI_Controller {
                 $font_path = FCPATH . 'font/myriapod.otf';
 
              [[TEXT_IMAGE]]
-[[ONLY_TEXT_START]]
+
                 Imagealphablending($dest, false);
                 Imagesavealpha($dest, true);
                 $filename = base_url() . 'uploads/' . $user_profile['id'] . '.jpg';
                 list($rwidth, $rheight) = getimagesize($filename);
-                [[ONLY_TEXT_START]]
+[[ONLY_TEXT_START]]
                 $thumb = imagecreatetruecolor([[WIDTH]], [[HEIGHT]]);
                 $source = imagecreatefromjpeg(base_url() . 'uploads/' . $user_profile['id'] . '.jpg');
                 imagecopyresized($thumb, $source, 0, 0, 0, 0, [[WIDTH]], [[HEIGHT]], $rwidth, $rheight);
