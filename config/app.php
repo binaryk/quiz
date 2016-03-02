@@ -169,6 +169,7 @@ return [
 		Laracasts\Utilities\JavaScript\JavaScriptServiceProvider::class,
 		Laravel\Socialite\SocialiteServiceProvider::class,
 		Potsky\LaravelLocalizationHelpers\LaravelLocalizationHelpersServiceProviderLaravel5::class,
+
 	],
 
 	/*
