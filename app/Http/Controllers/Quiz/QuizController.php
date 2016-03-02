@@ -175,8 +175,11 @@ class QuizController extends Controller
 
     public function shufhome($quizes = [])
     {
-        $contents = File::get(config('destinations.shufhome_in'));
+
+        $contents = File::get(config('destinations.en.shufhome_in'));
         $path = '/var/www/html/application/views/pages/shufhome.php';
+
+
         $out = '';
         foreach($quizes as $k => $quiz){
             $out .= '$links[] = ';
@@ -188,7 +191,7 @@ class QuizController extends Controller
             $out .= '</a></div>\';';
         }
         $contents = str_replace("[[ADD]]",$out, $contents);
-        File::put(config('destinations.'. $this->lang .'.shufhome_out'), $contents);
+        File::put(config('destinations.en.shufhome_out'), $contents);
         if(env('APP_ENV') != 'local'){
             File::put($path, $contents);
         }
@@ -196,7 +199,7 @@ class QuizController extends Controller
 
     public function shufright($quizes = [])
     {
-        $contents = File::get(config('destinations.shufright_in'));
+        $contents = File::get(config('destinations.en.shufright_in'));
         $path = '/var/www/html/application/views/pages/shufright.php';
         $out = '';
         foreach($quizes as $k => $quiz){
@@ -207,7 +210,7 @@ class QuizController extends Controller
             $out .= '<span class="clearfix"></span> </a>\';';
         }
         $contents = str_replace("[[ADD]]",$out, $contents);
-        File::put(config('destinations.'. $this->lang .'.shufright_out'), $contents);
+        File::put(config('destinations.en.shufright_out'), $contents);
         if(env('APP_ENV') != 'local'){
             File::put($path, $contents);
         }
@@ -215,7 +218,7 @@ class QuizController extends Controller
 
     public function shufdown($quizes = [])
     {
-        $contents = File::get(config('destinations.shufdown_in'));
+        $contents = File::get(config('destinations.en.shufdown_in'));
         $path = '/var/www/html/application/views/pages/shufdown.php';
         $out = '';
         foreach($quizes as $k => $quiz){
@@ -225,7 +228,7 @@ class QuizController extends Controller
             $out .= '<span>'.$quiz->ogtitle.'</span></a>\';';
         }
         $contents = str_replace("[[ADD]]",$out, $contents);
-        File::put(config('destinations.'. $this->lang .'.shufdown_out'), $contents);
+        File::put(config('destinations.en.shufdown_out'), $contents);
         if(env('APP_ENV') != 'local'){
             File::put($path, $contents);
         }
