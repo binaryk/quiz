@@ -4,27 +4,10 @@ error_reporting(E_ALL);
 $links2 = array();
 
 
-
-
-
-
-
-$links2[] = '
-                    <a href="'.base_url().'how_were_you_created">
-                        <img src="'.asset_url().'img/sample/how_were_you_created_sample.jpg" alt=""/>
-                        <span>Cum ai fost creat (ă)?</span>
-                    </a>
-';
 $links2[] = '
                     <a href="'.base_url().'myanimal_soul">
                         <img src="'.asset_url().'img/sample/myanimal_soul_sample.jpg" alt=""/>
                         <span>Ce animal ar alege sufletul tău?</span>
-                    </a>
-';
-$links2[] = '
-                    <a href="'.base_url().'your_next_super_goal">
-                        <img src="'.asset_url().'img/sample/your_next_super_goal_sample.jpg" alt=""/>
-                        <span>Care va fi următorul super țel pe care îl vei atinge?</span>
                     </a>
 ';
 $links2[] = '

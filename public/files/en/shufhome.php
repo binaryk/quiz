@@ -4,33 +4,11 @@ error_reporting(E_ALL);
 $links = array();
 
 
-
-
-
-
-$links[] = '
-                                    <div class="col-md-4">
-                    <a href="'.base_url().'how_were_you_created" class="sidebar-quiz">
-                        <img src="'.asset_url().'img/sample/how_were_you_created_sample.jpg" alt=""/>
-                        <h5><strong>How Were You Created?</strong></h5>
-                        <span class="clearfix"></span>
-                    </a>
-                </div>
-';
 $links[] = '
                                     <div class="col-md-4">
                     <a href="'.base_url().'myanimal_soul" class="sidebar-quiz">
                         <img src="'.asset_url().'img/sample/myanimal_soul_sample.jpg" alt=""/>
                         <h5><strong>What Animal Chose Your Soul?</strong></h5>
-                        <span class="clearfix"></span>
-                    </a>
-                </div>
-';
-$links[] = '
-                                    <div class="col-md-4">
-                    <a href="'.base_url().'your_next_super_goal" class="sidebar-quiz">
-                        <img src="'.asset_url().'img/sample/your_next_super_goal_sample.jpg" alt=""/>
-                        <h5><strong>What Is Your Next Super Goal Achievement?</strong></h5>
                         <span class="clearfix"></span>
                     </a>
                 </div>
