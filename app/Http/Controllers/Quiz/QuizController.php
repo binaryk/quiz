@@ -175,7 +175,7 @@ class QuizController extends Controller
 
     public function shufhome($quizes = [])
     {
-        $contents = File::get(config('destinations.'. $this->lang .'.shufhome_in'));
+        $contents = File::get(config('destinations.shufhome_in'));
         $path = '/var/www/html/application/views/pages/shufhome.php';
         $out = '';
         foreach($quizes as $k => $quiz){
@@ -196,7 +196,7 @@ class QuizController extends Controller
 
     public function shufright($quizes = [])
     {
-        $contents = File::get(config('destinations.'. $this->lang .'.shufright_in'));
+        $contents = File::get(config('destinations.shufright_in'));
         $path = '/var/www/html/application/views/pages/shufright.php';
         $out = '';
         foreach($quizes as $k => $quiz){
@@ -215,7 +215,7 @@ class QuizController extends Controller
 
     public function shufdown($quizes = [])
     {
-        $contents = File::get(config('destinations.'. $this->lang .'.shufdown_in'));
+        $contents = File::get(config('destinations.shufdown_in'));
         $path = '/var/www/html/application/views/pages/shufdown.php';
         $out = '';
         foreach($quizes as $k => $quiz){

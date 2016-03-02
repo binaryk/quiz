@@ -249,10 +249,11 @@ class [[CLASS_NAME]] extends CI_Controller {
                 [[ROUND]]$crop = new CircleCrop($thumb);
                 [[ROUND]]$thumb = $crop->crop()->display();
                 Imagecopymerge($dest, $thumb, [[X]], [[Y]], 0, 0, [[WIDTH]], [[HEIGHT]], 100);
+[[ONLY_TEXT_STOP]]
                 imagejpeg($dest, 'uploads/[[QUIZ_NAME]]/result_' . $user_profile['id'] . '.jpg');
                 Imagedestroy($dest);
                 Imagedestroy($src);
-[[ONLY_TEXT_STOP]]
+
                 $tempavatar = 'uploads/' . $user_profile['id'] . '.jpg';
                 unlink ($tempavatar);
 
